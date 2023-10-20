@@ -1,6 +1,15 @@
+let ataqueJugador
+
 function iniciarJuego(){
     let botonSeleccionarMascota = document.getElementById('boton-seleccionar-mascota');
     botonSeleccionarMascota.addEventListener('click', seleccionarMascotaJugador);
+
+    let botonBaba = document.getElementById('boton-baba');
+    botonBaba.addEventListener('click', ataqueBaba);
+    let botonOlfato = document.getElementById('boton-olfato');
+    botonOlfato.addEventListener('click', ataqueOlfato);
+    let botonMirada = document.getElementById('boton-mirada');
+    botonMirada.addEventListener('click', ataqueMirada);
 }
 
 function seleccionarMascotaJugador(){
@@ -38,9 +47,23 @@ function seleccionarMascotaEnemigo() {
     }
 }
 
+function ataqueBaba (){
+    ataqueJugador = 'BABA'
+    alert("Seleccionaste el ataque baba 😝");
+}
+
+function botonOlfato (){
+    ataqueJugador = 'OLFATO'
+    alert("Seleccionaste el ataque olfato 🐽");
+}
+
+function ataqueMirada (){
+    ataqueJugador = 'MIRADA'
+    alert("Seleccionaste el ataque mirada 👀");
+}
+
 function aleatorio(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
-
 
 window.addEventListener('load', iniciarJuego);
