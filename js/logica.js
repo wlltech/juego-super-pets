@@ -1,4 +1,5 @@
 let ataqueJugador
+let ataqueEnemigo
 
 function iniciarJuego(){
     let botonSeleccionarMascota = document.getElementById('boton-seleccionar-mascota');
@@ -35,12 +36,12 @@ function seleccionarMascotaJugador(){
 }
 
 function seleccionarMascotaEnemigo() {
-    let ataqueAleatorio = aleatorio (1,3);
+    let seleccionAleatoria = aleatorio (1,3);
     let spanMascotaEnemigo = document.getElementById('mascota-enemigo');
 
-    if (ataqueAleatorio == 1 ){
+    if (seleccionAleatoria == 1 ){
         spanMascotaEnemigo.innerHTML = 'Perro';
-    } else if (ataqueAleatorio == 2){
+    } else if (seleccionAleatoria == 2){
         spanMascotaEnemigo.innerHTML = 'Gato';
     } else {
         spanMascotaEnemigo.innerHTML = 'Caracol';
@@ -48,22 +49,44 @@ function seleccionarMascotaEnemigo() {
 }
 
 function ataqueBaba (){
+    let spanAtaqueJugador = document.getElementById('ataque-jugador');
     ataqueJugador = 'BABA'
     alert("Seleccionaste el ataque baba 😝");
+    spanAtaqueJugador.innerHTML = ' Baba resbaladiza';
+    ataqueMascotaEnemigo()
 }
 
-function botonOlfato (){
+function ataqueOlfato (){
+    let spanAtaqueJugador = document.getElementById('ataque-jugador');
     ataqueJugador = 'OLFATO'
     alert("Seleccionaste el ataque olfato 🐽");
+    spanAtaqueJugador.innerHTML = ' Olfato rastreador';
+    ataqueMascotaEnemigo()
 }
 
 function ataqueMirada (){
+    let spanAtaqueJugador = document.getElementById('ataque-jugador');
     ataqueJugador = 'MIRADA'
     alert("Seleccionaste el ataque mirada 👀");
+    spanAtaqueJugador.innerHTML = ' Mirada hipnotizante';
+    ataqueMascotaEnemigo()
 }
 
 function aleatorio(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
+function ataqueMascotaEnemigo() {
+    let ataqueAleatorio = aleatorio (1,3);
+    let spanMascotaEnemigo = document.getElementById('ataque-enemigo');
+
+    if (ataqueAleatorio == 1 ){
+        spanMascotaEnemigo.innerHTML = 'Baba resbaladiza';
+    } else if (ataqueAleatorio == 2){
+        spanMascotaEnemigo.innerHTML = 'Olfato rastreador';
+    } else {
+        spanMascotaEnemigo.innerHTML = 'Mirada hipnotizante';
+    }
 }
 
 window.addEventListener('load', iniciarJuego);
