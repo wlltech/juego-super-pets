@@ -1,17 +1,19 @@
-let ataqueJugador
-let ataqueEnemigo
-
+// Función para iniciar el Juego
 function iniciarJuego(){
     let botonSeleccionarMascota = document.getElementById('boton-seleccionar-mascota');
     botonSeleccionarMascota.addEventListener('click', seleccionarMascotaJugador);
 
-    let botonBaba = document.getElementById('boton-baba');
-    botonBaba.addEventListener('click', ataqueBaba);
-    let botonOlfato = document.getElementById('boton-olfato');
-    botonOlfato.addEventListener('click', ataqueOlfato);
-    let botonMirada = document.getElementById('boton-mirada');
-    botonMirada.addEventListener('click', ataqueMirada);
+    let buttonBaba = document.getElementById('boton-baba');
+    buttonBaba.addEventListener('click', ataqueBaba);
+    let buttonOlfato = document.getElementById('boton-olfato');
+    buttonOlfato.addEventListener('click', ataqueOlfato);
+    let buttonMirada = document.getElementById('boton-mirada');
+    buttonMirada.addEventListener('click', ataqueMirada);
 }
+
+// Funciones para seleccionar mascotas
+let ataqueJugador
+let ataqueEnemigo
 
 function seleccionarMascotaJugador(){
     let inputPerro = document.getElementById('perro');
@@ -20,13 +22,10 @@ function seleccionarMascotaJugador(){
     let spanMascotaJugador = document.getElementById('mascota-jugador');
 
     if (inputPerro.checked){
-        alert("Seleccionaste el Perro 🐕");
         spanMascotaJugador.innerHTML = 'Perro';
     } else if (inputGato.checked){
-        alert("Seleccionaste el Gato 😼")
         spanMascotaJugador.innerHTML = 'Gato';
     } else if (inputCaracol.checked){
-        alert("Seleccionaste el Caracol 🐌");
         spanMascotaJugador.innerHTML = 'Caracol';
     } else {
         alert('Selecciona alguna mascota');
@@ -48,27 +47,19 @@ function seleccionarMascotaEnemigo() {
     }
 }
 
+// Funciones para el ataque de las mascotas
 function ataqueBaba (){
-    let spanAtaqueJugador = document.getElementById('ataque-jugador');
-    ataqueJugador = 'BABA'
-    alert("Seleccionaste el ataque baba 😝");
-    spanAtaqueJugador.innerHTML = ' Baba resbaladiza';
+    ataqueJugador = 'Baba resbaladiza 😝';
     ataqueMascotaEnemigo()
 }
 
 function ataqueOlfato (){
-    let spanAtaqueJugador = document.getElementById('ataque-jugador');
-    ataqueJugador = 'OLFATO'
-    alert("Seleccionaste el ataque olfato 🐽");
-    spanAtaqueJugador.innerHTML = ' Olfato rastreador';
+    ataqueJugador = 'Olfato rastreador 🐽';
     ataqueMascotaEnemigo()
 }
 
 function ataqueMirada (){
-    let spanAtaqueJugador = document.getElementById('ataque-jugador');
-    ataqueJugador = 'MIRADA'
-    alert("Seleccionaste el ataque mirada 👀");
-    spanAtaqueJugador.innerHTML = ' Mirada hipnotizante';
+    ataqueJugador = 'Mirada hipnotizante 👀';
     ataqueMascotaEnemigo()
 }
 
@@ -78,15 +69,22 @@ function aleatorio(min, max) {
 
 function ataqueMascotaEnemigo() {
     let ataqueAleatorio = aleatorio (1,3);
-    let spanMascotaEnemigo = document.getElementById('ataque-enemigo');
 
     if (ataqueAleatorio == 1 ){
-        spanMascotaEnemigo.innerHTML = 'Baba resbaladiza';
+        ataqueEnemigo = 'Baba resbaladiza 😝';
     } else if (ataqueAleatorio == 2){
-        spanMascotaEnemigo.innerHTML = 'Olfato rastreador';
+        ataqueEnemigo = 'Olfato rastreador 🐽';
     } else {
-        spanMascotaEnemigo.innerHTML = 'Mirada hipnotizante';
+        ataqueEnemigo = 'Mirada hipnotizante 👀';
     }
+    mostrarMensaje();
+}
+
+function mostrarMensaje (){
+    let sectionMensajes = document.getElementById('mensajes');
+    let parrafo = document.createElement('p');
+    parrafo.innerHTML = 'Tu mascota atacó con '+ ataqueJugador +', la mascota del enemigo atacó con ' + ataqueEnemigo;
+    sectionMensajes.appendChild(parrafo);
 }
 
 window.addEventListener('load', iniciarJuego);
