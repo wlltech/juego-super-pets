@@ -12,9 +12,6 @@ function iniciarJuego(){
 }
 
 // Funciones para seleccionar mascotas
-let ataqueJugador
-let ataqueEnemigo
-
 function seleccionarMascotaJugador(){
     let inputPerro = document.getElementById('perro');
     let inputGato = document.getElementById('gato');
@@ -34,6 +31,10 @@ function seleccionarMascotaJugador(){
     seleccionarMascotaEnemigo();
 }
 
+function aleatorio(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
 function seleccionarMascotaEnemigo() {
     let seleccionAleatoria = aleatorio (1,3);
     let spanMascotaEnemigo = document.getElementById('mascota-enemigo');
@@ -48,42 +49,55 @@ function seleccionarMascotaEnemigo() {
 }
 
 // Funciones para el ataque de las mascotas
+let ataqueJugador
+let ataqueEnemigo
+
 function ataqueBaba (){
-    ataqueJugador = 'Baba resbaladiza 😝';
+    ataqueJugador = 'Baba resbaladiza';
     ataqueMascotaEnemigo()
 }
 
 function ataqueOlfato (){
-    ataqueJugador = 'Olfato rastreador 🐽';
+    ataqueJugador = 'Olfato rastreador';
     ataqueMascotaEnemigo()
 }
 
 function ataqueMirada (){
-    ataqueJugador = 'Mirada hipnotizante 👀';
+    ataqueJugador = 'Mirada hipnotizante';
     ataqueMascotaEnemigo()
-}
-
-function aleatorio(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
 function ataqueMascotaEnemigo() {
     let ataqueAleatorio = aleatorio (1,3);
 
     if (ataqueAleatorio == 1 ){
-        ataqueEnemigo = 'Baba resbaladiza 😝';
+        ataqueEnemigo = 'Baba resbaladiza';
     } else if (ataqueAleatorio == 2){
-        ataqueEnemigo = 'Olfato rastreador 🐽';
+        ataqueEnemigo = 'Olfato rastreador';
     } else {
-        ataqueEnemigo = 'Mirada hipnotizante 👀';
+        ataqueEnemigo = 'Mirada hipnotizante';
     }
-    mostrarMensaje();
+    combate();
 }
 
-function mostrarMensaje (){
+function combate(){
+    if(ataqueJugador == ataqueEnemigo){
+        mostrarMensaje ('Empate')
+    } else if(ataqueJugador == 'Mirada hipnotizante' && ataqueEnemigo == 'Olfato rastreador'){
+        mostrarMensaje ('Ganaste')
+    } else if(ataqueJugador == 'Baba resbaladiza' && ataqueEnemigo == 'Mirada hipnotizante'){
+        mostrarMensaje ('Ganaste')
+    } else if(ataqueJugador == 'Olfato rastreador' && ataqueEnemigo == 'Baba resbaladiza'){
+        mostrarMensaje ("Ganaste")
+    } else {
+        mostrarMensaje ('Perdiste')
+    }
+}
+
+function mostrarMensaje (resultadoAtaque){
     let sectionMensajes = document.getElementById('mensajes');
     let parrafo = document.createElement('p');
-    parrafo.innerHTML = 'Tu mascota atacó con '+ ataqueJugador +', la mascota del enemigo atacó con ' + ataqueEnemigo;
+    parrafo.innerHTML = 'Tu mascota atacó con '+ ataqueJugador +', la mascota del enemigo atacó con ' + ataqueEnemigo + ' ' + resultadoAtaque + '!!!';
     sectionMensajes.appendChild(parrafo);
 }
 
