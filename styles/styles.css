@@ -1,0 +1,40 @@
+h1 {
+    color: darkmagenta;
+    font-size: 45px;
+}
+
+.texto-pets {
+    color: crimson;
+}
+
+h2 {
+    color: mediumvioletred;
+    font-size: 35px;
+    font-weight: 100;
+}
+
+label {
+    font-size: 25px;
+    color: navy;
+}
+
+button {
+    color: white;
+    background-color: orangered;
+    width: 200px;
+    height: 60px;
+    border: none;
+    font-size: 18px;
+}
+
+#boton-baba {
+    background-color: cornflowerblue;
+}
+
+#boton-olfato {
+    background-color: coral;
+}
+
+#boton-mirada {
+    background-color: crimson;
+}

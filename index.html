@@ -6,10 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Super Pets</title>
     <script src="./js/logica.js"></script>
+    <link rel="stylesheet" href="./styles/styles.css">
 </head>
 
 <body>
-    <h1>Super PETS 😝 🐽 👀</h1>
+    <h1>Super <span class="texto-pets">PETS</span> 😝 🐽 👀</h1>
 
     <section id="seleccionar-mascota">
         <h2>Elige tu mascota:</h2>
@@ -25,12 +26,12 @@
 
         <button id="boton-seleccionar-mascota">Seleccionar</button>
 
-        <p>Tu mascota <span id="mascota-jugador"></span> tiene <span>3</span> vidas</p>
-        <p>La mascota <span id="mascota-enemigo"></span> del enemigo tiene <span>3</span> vidas</p>
-
     </section>
 
     <section id="seleccionar-ataque">
+        <p>Tu mascota <span id="mascota-jugador"></span> tiene <span id="vidas-mascota-jugador">3</span> vidas</p>
+        <p>La mascota <span id="mascota-enemigo"></span> del enemigo tiene <span id="vidas-mascota-enemigo">3</span> vidas</p>
+        
         <h2>Elige el ataque</h2>
         <p>
             <button id="boton-baba">Baba resbaladiza 😝</button>
@@ -43,7 +44,7 @@
     </section>
 
     <section id="reiniciar">
-        <button>Reiniciar</button>
+        <button id="reiniciarButton">Reiniciar</button>
     </section>
 </body>
 
