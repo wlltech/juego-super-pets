@@ -20,21 +20,62 @@ label {
 
 button {
     color: white;
-    background-color: orangered;
-    width: 200px;
+    background-color: #f0ab45;
+    width: 220px;
     height: 60px;
     border: none;
+    font-size: 16px;
+    box-sizing: border-box;
+    font-family: 'Press Start 2P';
+    border-radius: 15px;
+    border: #823018 5px solid;
+}
+
+button:hover {
+    background-color: #d97e1d;
     font-size: 18px;
 }
 
 #boton-baba {
-    background-color: cornflowerblue;
+    background-color: #5bc8ac;
+    height: 80px;
+    width: 250px;
+    padding: 5px;
 }
 
 #boton-olfato {
-    background-color: coral;
+    background-color: #ffc0cb;
+    height: 80px;
+    width: 250px;
+    padding: 5px;
 }
 
 #boton-mirada {
-    background-color: crimson;
+    background-color: #ff8c00;
+    height: 80px;
+    width: 250px;
+    padding: 5px;
+}
+
+#seleccionar-mascota {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+body {
+    background-image: url('../images/gato.jpg');
+    background-color: #4e5756;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+label {
+    background-color: #f0e68c;
+    width: 300px;
+    height: 200px;
+    font-family: 'Press Start 2P';
+    color: #ee8925;
 }
