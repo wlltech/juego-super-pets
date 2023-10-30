@@ -1,16 +1,12 @@
-h1 {
-    color: darkmagenta;
-    font-size: 45px;
-}
-
 .texto-pets {
-    color: crimson;
+    color: #e3dfb8;
 }
 
 h2 {
-    color: mediumvioletred;
-    font-size: 35px;
+    color: #fff2d9;
+    font-size: 45px;
     font-weight: 100;
+    margin-top: 50px;
 }
 
 label {
@@ -20,7 +16,7 @@ label {
 
 button {
     color: white;
-    background-color: #f0ab45;
+    background-color: transparent;
     width: 220px;
     height: 60px;
     border: none;
@@ -28,12 +24,13 @@ button {
     box-sizing: border-box;
     font-family: 'Press Start 2P';
     border-radius: 15px;
-    border: #823018 5px solid;
+    border: #fff2d9 2px solid;
+    margin-top: 30px;
 }
 
 button:hover {
-    background-color: #d97e1d;
-    font-size: 18px;
+    background-color: #ead7bb;
+    color: #113946;
 }
 
 #boton-baba {
@@ -65,17 +62,53 @@ button:hover {
 }
 
 body {
-    background-image: url('../images/gato.jpg');
+    background-image: url('../images/gato-bg.jpg');
     background-color: #4e5756;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    font-family: 'Press Start 2P';
 }
 
 label {
-    background-color: #f0e68c;
-    width: 300px;
+    background-color: rgb(17,57,70,0.7);
+    width: 370px;
     height: 200px;
     font-family: 'Press Start 2P';
-    color: #ee8925;
+    color: rgb(255,242,217);
+    box-sizing: border-box;
+    padding: 20px;
+    display: flex;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.seccion-mascotas{
+    display: flex;
+    gap: 10px;
+}
+
+input {
+    display: none;
+}
+
+.titulo-principal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30rem;
+}
+
+.titulo-principal h1 {
+    color: #ffffff;
+    font-size: 100px;
+}
+
+.seccion-mascotas label img {
+    width: 130px;
+}
+
+.seccion-mascotas label img:hover {
+    width: 150px;
 }
