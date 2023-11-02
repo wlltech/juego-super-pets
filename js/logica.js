@@ -32,7 +32,7 @@ function seleccionarMascotaJugador() {
     sectionSeleccionarMascota.style.display = 'none';
 
     let sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque');
-    sectionSeleccionarAtaque.style.display = 'block';
+    sectionSeleccionarAtaque.style.display = 'flex';
 
     let inputPerro = document.getElementById('perro');
     let inputGato = document.getElementById('gato');
@@ -156,7 +156,7 @@ function mostrarResultadoFinal(resultadoFinal) {
     buttonMirada.disabled = true;
 
     let buttonReiniciarJuego = document.getElementById('reiniciarButton');
-    buttonReiniciarJuego.style.display = 'block';
+    buttonReiniciarJuego.style.display = 'flex';
 }
 
 function reiniciarJuego() {

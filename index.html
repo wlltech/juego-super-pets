@@ -15,28 +15,31 @@
 </head>
 
 <body>
-    
+
     <section id="seleccionar-mascota">
         <h2>Elige tu mascota:</h2>
 
         <div class="seccion-mascotas">
+            <input type="radio" name="mascota" id="perro" />
             <label for="perro">
                 <p>Perro</p>
                 <img src="./images/perro.png" alt="Mascota Perro">
             </label>
-            <input type="radio" name="mascota" id="perro" />
-    
+
+
+            <input type="radio" name="mascota" id="gato" />
             <label for="gato">
                 <p>Gato</p>
                 <img src="./images/gato.png" alt="Mascota Gato">
             </label>
-            <input type="radio" name="mascota" id="gato" />
-    
+
+
+            <input type="radio" name="mascota" id="caracol" />
             <label for="caracol">
                 <p>Caracol</p>
                 <img src="./images/caracol.png" alt="Mascota Caracol">
             </label>
-            <input type="radio" name="mascota" id="caracol" />
+
         </div>
 
         <button id="boton-seleccionar-mascota">Seleccionar</button>
@@ -44,24 +47,30 @@
     </section>
 
     <section id="seleccionar-ataque">
-        <p>Tu mascota <span id="mascota-jugador"></span> tiene <span id="vidas-mascota-jugador">3</span> vidas</p>
-        <p>La mascota <span id="mascota-enemigo"></span> del enemigo tiene <span id="vidas-mascota-enemigo">3</span>
-            vidas</p>
 
-        <h2>Elige el ataque</h2>
-        <p>
-            <button id="boton-baba">Baba resbaladiza 😝</button>
-            <button id="boton-olfato">Olfato rastreador &nbsp;🐽 </button>
-            <button id="boton-mirada">Mirada hipnotizante 👀</button>
-        </p>
+        <h2 class="titulo-ataque">Elige el ataque</h2>
+        <div>
+            <button id="boton-baba" class="botones-ataques">Baba resbaladiza <span class="emoticones">😝</span></button>
+            <button id="boton-olfato" class="botones-ataques">Olfato rastreador &nbsp;<span class="emoticones">🐽</span> </button>
+            <button id="boton-mirada" class="botones-ataques">Mirada hipnotizante <span class="emoticones">👀</span></button>
+        </div>
+
+        <div>
+            <section id="mensajes">
+            </section>
+
+            <section id="reiniciar">
+                <button id="reiniciarButton">Reiniciar</button>
+            </section>
+        </div>
+
+        <div>
+            <p>Tu mascota <span id="mascota-jugador"></span> tiene <span id="vidas-mascota-jugador">3</span> vidas</p>
+            <p>La mascota <span id="mascota-enemigo"></span> del enemigo tiene <span id="vidas-mascota-enemigo">3</span>vidas</p>
+        </div>
+
     </section>
 
-    <section id="mensajes">
-    </section>
-
-    <section id="reiniciar">
-        <button id="reiniciarButton">Reiniciar</button>
-    </section>
     <section class="titulo-principal">
         <h1>Super <span class="texto-pets">PETS</span></h1>
     </section>
