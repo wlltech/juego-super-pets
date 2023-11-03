@@ -39,12 +39,24 @@ function seleccionarMascotaJugador() {
     let inputCaracol = document.getElementById('caracol');
     let spanMascotaJugador = document.getElementById('mascota-jugador');
 
+    // Insertar imágen de mascota
+    let imagenPerro = document.createElement('img');
+    let imagenGato = document.createElement('img');
+    let imagenCaracol = document.createElement('img');
+
+    imagenPerro.src = '../images/perro.png';
+    imagenGato.src = '../images/gato.png';
+    imagenCaracol.src = '../images/caracol.png';
+
     if (inputPerro.checked) {
-        spanMascotaJugador.innerHTML = 'Perro';
+        spanMascotaJugador.appendChild(imagenPerro);
+        //spanMascotaJugador.innerHTML = 'Perro';
     } else if (inputGato.checked) {
-        spanMascotaJugador.innerHTML = 'Gato';
+        spanMascotaJugador.appendChild(imagenGato);
+        //spanMascotaJugador.innerHTML = 'Gato';
     } else if (inputCaracol.checked) {
-        spanMascotaJugador.innerHTML = 'Caracol';
+        spanMascotaJugador.appendChild(imagenCaracol);
+        //spanMascotaJugador.innerHTML = 'Caracol';
     } else {
         alert('Selecciona alguna mascota');
         reiniciarJuego();
@@ -61,12 +73,25 @@ function seleccionarMascotaEnemigo() {
     let seleccionAleatoria = aleatorio(1, 3);
     let spanMascotaEnemigo = document.getElementById('mascota-enemigo');
 
+    // Insertar imágen de mascota
+    let imagenPerro = document.createElement('img');
+    let imagenGato = document.createElement('img');
+    let imagenCaracol = document.createElement('img');
+
+    imagenPerro.src = '../images/perro.png';
+    imagenGato.src = '../images/gato.png';
+    imagenCaracol.src = '../images/caracol.png';
+
+
     if (seleccionAleatoria == 1) {
-        spanMascotaEnemigo.innerHTML = 'Perro';
+        spanMascotaEnemigo.appendChild(imagenPerro);
+        //spanMascotaEnemigo.innerHTML = 'Perro';
     } else if (seleccionAleatoria == 2) {
-        spanMascotaEnemigo.innerHTML = 'Gato';
+        spanMascotaEnemigo.appendChild(imagenGato);
+        //spanMascotaEnemigo.innerHTML = 'Gato';
     } else {
-        spanMascotaEnemigo.innerHTML = 'Caracol';
+        spanMascotaEnemigo.appendChild(imagenCaracol);
+        //spanMascotaEnemigo.innerHTML = 'Caracol';
     }
 }
 
