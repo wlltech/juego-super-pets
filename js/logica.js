@@ -6,11 +6,11 @@ let vidasEnemigo = 3;
 
 // Función para iniciar el Juego
 function iniciarJuego() {
-    let buttonReiniciarJuego = document.getElementById('reiniciarButton');
-    buttonReiniciarJuego.style.display = 'none';
+    let botonReiniciarJuego = document.getElementById('reiniciarButton');
+    botonReiniciarJuego.style.display = 'none';
 
-    let sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque');
-    sectionSeleccionarAtaque.style.display = 'none';
+    let seccionSeleccionarAtaque = document.getElementById('seleccionar-ataque');
+    seccionSeleccionarAtaque.style.display = 'none';
 
     let botonSeleccionarMascota = document.getElementById('boton-seleccionar-mascota');
     botonSeleccionarMascota.addEventListener('click', seleccionarMascotaJugador);
@@ -28,11 +28,11 @@ function iniciarJuego() {
 
 // Funciones para seleccionar mascotas
 function seleccionarMascotaJugador() {
-    let sectionSeleccionarMascota = document.getElementById('seleccionar-mascota');
-    sectionSeleccionarMascota.style.display = 'none';
+    let seccionSeleccionarMascota = document.getElementById('seleccionar-mascota');
+    seccionSeleccionarMascota.style.display = 'none';
 
-    let sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque');
-    sectionSeleccionarAtaque.style.display = 'flex';
+    let seccionSeleccionarAtaque = document.getElementById('seleccionar-ataque');
+    seccionSeleccionarAtaque.style.display = 'flex';
 
     let inputPerro = document.getElementById('perro');
     let inputGato = document.getElementById('gato');
@@ -47,6 +47,7 @@ function seleccionarMascotaJugador() {
         spanMascotaJugador.innerHTML = 'Caracol';
     } else {
         alert('Selecciona alguna mascota');
+        reiniciarJuego();
     }
 
     seleccionarMascotaEnemigo();
@@ -135,28 +136,28 @@ function revisarVidas() {
 }
 
 function mostrarMensaje(resultadoAtaque) {
-    let sectionMensajes = document.getElementById('mensajes');
+    let divMensajes = document.getElementById('mensaje-resultados');
     let parrafo = document.createElement('p');
     parrafo.innerHTML = 'Tu mascota atacó con ' + ataqueJugador + ', la mascota del enemigo atacó con ' + ataqueEnemigo + ' ' + resultadoAtaque + '!!!';
-    sectionMensajes.appendChild(parrafo);
+    divMensajes.appendChild(parrafo);
 }
 
 function mostrarResultadoFinal(resultadoFinal) {
-    let sectionMensajes = document.getElementById('mensajes');
+    let divMensajes = document.getElementById('mensaje-ataques');
     let parrafo = document.createElement('p');
     let buttonBaba = document.getElementById('boton-baba');
     let buttonOlfato = document.getElementById('boton-olfato');
     let buttonMirada = document.getElementById('boton-mirada');
 
     parrafo.innerHTML = resultadoFinal;
-    sectionMensajes.appendChild(parrafo);
+    divMensajes.appendChild(parrafo);
 
     buttonBaba.disabled = true;
     buttonOlfato.disabled = true;
     buttonMirada.disabled = true;
 
-    let buttonReiniciarJuego = document.getElementById('reiniciarButton');
-    buttonReiniciarJuego.style.display = 'flex';
+    let botonReiniciarJuego = document.getElementById('reiniciarButton');
+    botonReiniciarJuego.style.display = 'flex';
 }
 
 function reiniciarJuego() {
