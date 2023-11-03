@@ -87,7 +87,7 @@ body {
 
 label {
     background-color: rgb(17,57,70,0.7);
-    width: 370px;
+    width: 350px;
     height: 200px;
     font-family: 'Press Start 2P';
     color: rgb(255,242,217);
@@ -112,7 +112,6 @@ input {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 30rem;
 }
 
 .titulo-principal h1 {
@@ -183,4 +182,88 @@ input {
 
 #mascota-enemigo, #mascota-jugador, img{
     width: 130px;
+}
+
+.ataques {
+    display: flex;
+    gap: 20px;
+}
+
+@media screen and (max-width: 360px){
+    .ataques {
+        flex-direction: column;
+    }
+
+    .seccion-mascotas {
+        flex-direction: column;
+    }
+    h2 {
+        margin-left: 15px;
+        font-size: 35px;
+    }
+
+    .titulo-principal{
+        margin-top: 0px;
+    }
+
+    .titulo-principal h1{
+        font-size: 70px;
+        margin-left: 30px;
+    }
+
+    #boton-baba, 
+    #boton-olfato, 
+    #boton-mirada {
+        margin: 8px;
+    }
+
+    .caja-puntaje {
+        width: 100px;
+    }
+
+    .caja-resultados {
+        width: 350px;
+    }
+
+    #caja-resultados {
+        gap: 15px;
+    }
+
+    #ataque-jugador, #ataque-enemigo{
+        font-size: 10px;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .ataques {
+        flex-direction: column;
+    }
+
+    .caja-puntaje {
+        width: 120px;
+    }
+
+    #ataque-jugador, #ataque-enemigo{
+        font-size: 12px;
+    }
+
+    .caja-resultados {
+        width: 400px;
+    }
+
+    h2 {
+        margin-left: 15px;
+        font-size: 35px;
+    }
+}
+
+@media screen and (max-width: 1024px){
+    .titulo-principal{
+        margin-top: 0px;
+    }
+
+    .titulo-principal h1{
+        font-size: 70px;
+        margin-left: 30px;
+    }
 }
