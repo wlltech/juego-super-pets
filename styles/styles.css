@@ -9,6 +9,10 @@ h2 {
     margin-top: 50px;
 }
 
+.titulo {
+
+}
+
 label {
     font-size: 25px;
     color: navy;
@@ -39,8 +43,8 @@ button:hover {
 }
 
 .botones-ataques {
-    background-color: rgb(190,95,16,0.7);
-    color: rgb(255,242,217);
+    background-color: rgb(176, 87, 141, 0.7);
+    color: rgb(255, 228, 214);
     height: 80px;
     width: 250px;
     padding: 5px;
@@ -49,8 +53,7 @@ button:hover {
 }
 
 .botones-ataques:hover{
-    background-color: rgb(190,95,16);
-    color: rgb(255,242,217);
+    background-color: rgb(176, 87, 141);
     font-size: 0px;
     padding: 0px;
     
@@ -79,6 +82,7 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     font-family: 'Press Start 2P';
+    color:rgb(255,242,217);
 }
 
 label {
@@ -130,5 +134,46 @@ input {
 }
 
 .titulo-ataque {
-    color: rgb(244,194,109);
+    color: rgb(250, 203, 234);
+}
+
+.caja-resultados {
+    background-color: rgb(250, 203, 234, 0.7);
+    border-radius: 15px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    width: 450px;
+    height: auto;
+}
+
+#reiniciarButton {
+    background-color: rgb(217, 136, 185);
+    justify-content: center;
+    align-items: center;
+    color: rgb(176, 87, 141);
+}
+
+#caja-resultados {
+    display: flex;
+    gap: 30px;
+}
+
+#caja-resultados .caja-puntaje h2 {
+    font-size: 20px;
+    margin: 5px;
+    color: rgb(250, 203, 234);
+    margin-bottom: 30px;
+}
+
+.caja-vidas {
+    display: flex;
+}
+
+.caja-puntaje{
+    background-color: rgb(176, 87, 141, 0.7);
+    padding: 20px 30px 20px 30px;
+    color: rgb(255, 228, 214);
 }

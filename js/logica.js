@@ -110,36 +110,45 @@ function combate() {
     } else if (ataqueJugador == 'Mirada hipnotizante' && ataqueEnemigo == 'Olfato rastreador') {
         mostrarMensaje('Ganaste')
         vidasEnemigo--
-        spanVidasEnemigo.innerHTML = vidasEnemigo
+        spanVidasEnemigo.innerHTML = vidasEnemigo;
     } else if (ataqueJugador == 'Baba resbaladiza' && ataqueEnemigo == 'Mirada hipnotizante') {
         mostrarMensaje('Ganaste')
         vidasEnemigo--
-        spanVidasEnemigo.innerHTML = vidasEnemigo
+        spanVidasEnemigo.innerHTML = vidasEnemigo;
     } else if (ataqueJugador == 'Olfato rastreador' && ataqueEnemigo == 'Baba resbaladiza') {
         mostrarMensaje("Ganaste")
         vidasEnemigo--
-        spanVidasEnemigo.innerHTML = vidasEnemigo
+        spanVidasEnemigo.innerHTML = vidasEnemigo;
     } else {
         mostrarMensaje('Perdiste')
         vidasJugador--
-        spanVidasJugador.innerHTML = vidasJugador
+        spanVidasJugador.innerHTML = vidasJugador;
     }
     revisarVidas();
 }
 
 function revisarVidas() {
     if (vidasEnemigo == 0) {
-        mostrarResultadoFinal("GANASTE, FELICIDADES!!!! 🥳");
+        mostrarResultadoFinal("FELICIDADES!!!! 🥳");
     } else if (vidasJugador == 0) {
-        mostrarResultadoFinal("Perdiste 😭 Inténta nuevamente");
+        mostrarResultadoFinal("😭 Inténta nuevamente");
     }
 }
 
 function mostrarMensaje(resultadoAtaque) {
-    let divMensajes = document.getElementById('mensaje-resultados');
-    let parrafo = document.createElement('p');
-    parrafo.innerHTML = 'Tu mascota atacó con ' + ataqueJugador + ', la mascota del enemigo atacó con ' + ataqueEnemigo + ' ' + resultadoAtaque + '!!!';
-    divMensajes.appendChild(parrafo);
+    let spanAtaqueJugador = document.getElementById('ataque-jugador');
+    let spanAtaqueEnemigo = document.getElementById('ataque-enemigo');
+    let spanResultado = document.getElementById('resultado');
+
+    let parrafoJugador = document.createElement('p');
+    let parrafoEnemigo = document.createElement('p');
+
+    parrafoJugador.innerHTML = ataqueJugador;
+    parrafoEnemigo.innerHTML = ataqueEnemigo;
+    spanResultado.innerHTML = resultadoAtaque;
+
+    spanAtaqueJugador.appendChild(parrafoJugador);
+    spanAtaqueEnemigo.appendChild(parrafoEnemigo);
 }
 
 function mostrarResultadoFinal(resultadoFinal) {
