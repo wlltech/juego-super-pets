@@ -1,269 +1,197 @@
-.texto-pets {
-    color: #e3dfb8;
-}
-
-h2 {
-    color: #fff2d9;
-    font-size: 45px;
-    font-weight: 100;
-    margin-top: 50px;
-}
-
-.titulo {
-
-}
-
-label {
-    font-size: 25px;
-    color: navy;
-}
-
-input[type="radio"]:checked + label {
-    border: 2px solid #ffffff;
-    background-color: #113946;
-}
-
-button {
-    color: white;
-    background-color: transparent;
-    width: 220px;
-    height: 60px;
-    border: none;
-    font-size: 16px;
-    box-sizing: border-box;
-    font-family: 'Press Start 2P';
-    border-radius: 15px;
-    border: #fff2d9 2px solid;
-    margin-top: 30px;
-}
-
-button:hover {
-    background-color: #ead7bb;
-    color: #113946;
-}
-
-.botones-ataques {
-    background-color: rgb(176, 87, 141, 0.7);
-    color: rgb(255, 228, 214);
-    height: 80px;
-    width: 250px;
-    padding: 5px;
-    border: transparent 2px solid;
-    font-size: 15px;
-}
-
-.botones-ataques:hover{
-    background-color: rgb(176, 87, 141);
-    font-size: 0px;
-    padding: 0px;
-    
-}
-
-.emoticones {
-    transition: font-size 0.3s, opacity 0.3s;
-    font-size: 0px;
-}
-
-.botones-ataques:hover .emoticones {
-    font-size: 50px;
-}
-
-#seleccionar-mascota {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-body {
-    background-image: url('../images/gato-bg.jpg');
-    background-color: #4e5756;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    font-family: 'Press Start 2P';
-    color:rgb(255,242,217);
-}
-
-label {
-    background-color: rgb(17,57,70,0.7);
-    width: 350px;
-    height: 200px;
-    font-family: 'Press Start 2P';
-    color: rgb(255,242,217);
-    box-sizing: border-box;
-    padding: 20px;
-    display: flex;
-    border-radius: 20px;
-    justify-content: center;
-    align-items: center;
-}
-
-.seccion-mascotas{
-    display: flex;
-    gap: 10px;
-}
-
-input {
-    display: none;
-}
-
-.titulo-principal {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.titulo-principal h1 {
-    color: #ffffff;
-    font-size: 100px;
-}
-
-.seccion-mascotas label img {
-    width: 130px;
-}
-
-.seccion-mascotas label img:hover {
-    width: 150px;
-}
-
-#seleccionar-ataque {
-    flex-direction: column;
-    align-items: center;
-}
-
-.titulo-ataque {
-    color: rgb(250, 203, 234);
-}
-
-.caja-resultados {
-    background-color: rgb(250, 203, 234, 0.7);
-    border-radius: 15px;
-    margin: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 15px;
-    width: 450px;
-    height: auto;
-}
-
-#reiniciarButton {
-    background-color: rgb(217, 136, 185);
-    justify-content: center;
-    align-items: center;
-    color: rgb(176, 87, 141);
-}
-
-#caja-resultados {
-    display: flex;
-    gap: 30px;
-}
-
-#caja-resultados .caja-puntaje h2 {
-    font-size: 20px;
-    margin: 5px;
-    color: rgb(250, 203, 234);
-    margin-bottom: 30px;
-}
-
-.caja-vidas {
-    display: flex;
-}
-
-.caja-puntaje{
-    display: flex;
-    flex-direction: column;
-    background-color: rgb(176, 87, 141, 0.7);
-    padding: 20px 30px 20px 30px;
-    color: rgb(255, 228, 214);
-    align-items: center;
-}
-
-#mascota-enemigo, #mascota-jugador, img{
-    width: 130px;
-}
-
-.ataques {
-    display: flex;
-    gap: 20px;
-}
 
 @media screen and (max-width: 360px){
+
     .ataques {
+        display: flex;
         flex-direction: column;
+        gap: 20px;
     }
 
-    .seccion-mascotas {
+    body {
+        background-image: url('../images/gato-bg.jpg');
+        background-color: #4e5756;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        font-family: 'Press Start 2P';
+        color:rgb(255,242,217);
+        width: 95%;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .botones-ataques {
+        background-color: rgb(176, 87, 141, 0.7);
+        color: rgb(255, 228, 214);
+        height: 80px;
+        width: 250px;
+        padding: 5px;
+        border: transparent 2px solid;
+        font-size: 15px;
+    }
+
+    .botones-ataques:hover{
+        background-color: rgb(176, 87, 141);
+        font-size: 0px;
+        padding: 0px;
+        
+    }
+
+    .botones-ataques:hover .emoticones {
+        font-size: 50px;
+    }
+    
+    button {
+        color: rgb(17,57,70);
+        background-color: rgb(255, 242, 217, 0.7);
+        width: 80%;
+        height: 60px;
+        border: none;
+        font-size: 16px;
+        box-sizing: border-box;
+        font-family: 'Press Start 2P';
+        border-radius: 15px;
+        border: #fff2d9 2px solid;
+        margin-top: 30px 0px 0px 0px;
+        padding: 0px;
+    }
+
+    button:hover {
+        background-color: #ead7bb;
+        color: #113946;
+    }
+
+    .caja-puntaje{
+        display: flex;
         flex-direction: column;
-    }
-    h2 {
-        margin-left: 15px;
-        font-size: 35px;
-    }
-
-    .titulo-principal{
-        margin-top: 0px;
-    }
-
-    .titulo-principal h1{
-        font-size: 70px;
-        margin-left: 30px;
-    }
-
-    #boton-baba, 
-    #boton-olfato, 
-    #boton-mirada {
-        margin: 8px;
-    }
-
-    .caja-puntaje {
+        background-color: rgb(176, 87, 141, 0.7);
+        padding: 20px 30px 20px 30px;
+        color: rgb(255, 228, 214);
+        align-items: center;
         width: 100px;
     }
 
     .caja-resultados {
-        width: 350px;
+        background-color: rgb(250, 203, 234, 0.7);
+        border-radius: 15px;
+        margin: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 15px;
+        width: 80%;
+        height: auto;
     }
 
     #caja-resultados {
-        gap: 15px;
+        display: flex;
+        gap: 30px;
     }
 
-    #ataque-jugador, #ataque-enemigo{
-        font-size: 10px;
-    }
-}
-
-@media screen and (max-width: 768px){
-    .ataques {
-        flex-direction: column;
+    #caja-resultados .caja-puntaje h2 {
+        font-size: 18px;
+        margin: 5px;
+        color: rgb(250, 203, 234);
+        margin-bottom: 30px;
     }
 
-    .caja-puntaje {
-        width: 120px;
+    .caja-vidas {
+        display: flex;
+        text-align: center;
     }
 
-    #ataque-jugador, #ataque-enemigo{
-        font-size: 12px;
-    }
-
-    .caja-resultados {
-        width: 400px;
+    .emoticones {
+        transition: font-size 0.3s, opacity 0.3s;
+        font-size: 0px;
     }
 
     h2 {
-        margin-left: 15px;
-        font-size: 35px;
-    }
-}
-
-@media screen and (max-width: 1024px){
-    .titulo-principal{
-        margin-top: 0px;
+        color: #fff2d9;
+        font-size: 30px;
+        font-weight: 100;
+        margin-top: 50px;
+        margin-left: 25px;
     }
 
-    .titulo-principal h1{
-        font-size: 70px;
-        margin-left: 30px;
+    input {
+        display: none;
+    }
+
+    input[type="radio"]:checked + label {
+        border: 2px solid #ffffff;
+        background-color: #113946;
+    }
+
+    label {
+        background-color: rgb(17,57,70,0.7);
+        width: 85%;
+        height: 150px;
+        font-family: 'Press Start 2P';
+        font-size: 20px;
+        color: rgb(255,242,217);
+        box-sizing: border-box;
+        padding: 20px;
+        display: flex;
+        border-radius: 20px;
+        justify-content: center;
+        align-items: center;
+        margin: 15px;
+    }
+
+    #mascota-enemigo, #mascota-jugador, img{
+        width: 80px;
+    }
+
+    #reiniciarButton {
+        background-color: rgb(217, 136, 185);
+        justify-content: center;
+        align-items: center;
+        color: rgb(176, 87, 141);
+    }
+
+    .seccion-mascotas{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .seccion-mascotas label img {
+        width: 130px;
+    }
+
+    .seccion-mascotas label img:hover {
+        width: 150px;
+    }
+
+    #seleccionar-ataque {
+        flex-direction: column;
+        align-items: center;
+    }    
+
+    #seleccionar-mascota {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .texto-pets {
+        color: #e3dfb8;
+    }
+
+    .titulo-ataque {
+        color: rgb(250, 203, 234);
+    }
+
+    .titulo-principal {
+        align-items: center;
+        width: 85%;
+    }
+
+    .titulo-principal h1 {
+        color: #ffffff;
+        font-size: 50px;
+        margin-left: 25px;
     }
 }
