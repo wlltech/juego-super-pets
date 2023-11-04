@@ -1,197 +1,234 @@
+.ataques {
+    display: flex;
+    gap: 20px;
+}
 
-@media screen and (max-width: 360px){
+#ataque-enemigo,
+#ataque-jugador {
+    color: rgb(176, 87, 141);
+    font-size: 12px;
+}
 
-    .ataques {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-    }
+body {
+    background-image: url('../images/gato-bg.jpg');
+    background-color: #4e5756;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: 'Press Start 2P';
+    color: rgb(255, 242, 217);
+    width: 95%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    body {
-        background-image: url('../images/gato-bg.jpg');
-        background-color: #4e5756;
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        font-family: 'Press Start 2P';
-        color:rgb(255,242,217);
-        width: 95%;
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+.botones-ataques {
+    background-color: rgb(176, 87, 141, 0.7);
+    color: rgb(255, 228, 214);
+    height: 50px;
+    width: 100px;
+    padding: 5px;
+    border: transparent 2px solid;
+    font-size: 9px;
+}
 
-    .botones-ataques {
-        background-color: rgb(176, 87, 141, 0.7);
-        color: rgb(255, 228, 214);
-        height: 80px;
-        width: 250px;
-        padding: 5px;
-        border: transparent 2px solid;
-        font-size: 15px;
-    }
+.botones-ataques:hover {
+    background-color: rgb(176, 87, 141);
+    font-size: 0px;
+    padding: 0px;
 
-    .botones-ataques:hover{
-        background-color: rgb(176, 87, 141);
-        font-size: 0px;
-        padding: 0px;
-        
-    }
+}
 
-    .botones-ataques:hover .emoticones {
-        font-size: 50px;
-    }
-    
-    button {
-        color: rgb(17,57,70);
-        background-color: rgb(255, 242, 217, 0.7);
-        width: 80%;
-        height: 60px;
-        border: none;
-        font-size: 16px;
-        box-sizing: border-box;
-        font-family: 'Press Start 2P';
-        border-radius: 15px;
-        border: #fff2d9 2px solid;
-        margin-top: 30px 0px 0px 0px;
-        padding: 0px;
-    }
+.botones-ataques:hover .emoticones {
+    font-size: 40px;
+}
 
-    button:hover {
-        background-color: #ead7bb;
-        color: #113946;
-    }
+button {
+    color: rgb(17, 57, 70);
+    background-color: rgb(255, 242, 217, 0.7);
+    width: 80%;
+    height: 60px;
+    border: none;
+    font-size: 16px;
+    box-sizing: border-box;
+    font-family: 'Press Start 2P';
+    border-radius: 15px;
+    border: #fff2d9 2px solid;
+    margin-top: 30px 0px 0px 0px;
+    padding: 0px;
+}
 
-    .caja-puntaje{
-        display: flex;
-        flex-direction: column;
-        background-color: rgb(176, 87, 141, 0.7);
-        padding: 20px 30px 20px 30px;
-        color: rgb(255, 228, 214);
-        align-items: center;
-        width: 100px;
-    }
+button:hover {
+    background-color: #ead7bb;
+    color: #113946;
+}
 
-    .caja-resultados {
-        background-color: rgb(250, 203, 234, 0.7);
-        border-radius: 15px;
-        margin: 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 15px;
-        width: 80%;
-        height: auto;
-    }
+.caja-puntaje {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(255, 228, 214, 0.9);
+    padding: 20px 30px 20px 30px;
+    color: rgb(255, 246, 246);
+    align-items: center;
+    width: 100px;
+}
 
-    #caja-resultados {
-        display: flex;
-        gap: 30px;
-    }
+#caja-resultados {
+    margin: 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    width: 100%;
+    height: auto;
+    gap: 15px;
+}
 
-    #caja-resultados .caja-puntaje h2 {
-        font-size: 18px;
-        margin: 5px;
-        color: rgb(250, 203, 234);
-        margin-bottom: 30px;
-    }
+.caja-resultados {
+    background-color: rgb(217, 136, 185);
+    margin: 20px auto;
+    width: 80%;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-    .caja-vidas {
-        display: flex;
+#caja-resultados .caja-puntaje h2 {
+    font-size: 18px;
+    margin: 5px;
+    color: rgb(176, 87, 141);
+    margin-bottom: 30px;
+}
+
+.caja-vidas {
+    display: flex;
+    text-align: center;
+}
+
+.caja-vidas p {
+    color: rgb(176, 87, 141);
+}
+
+.emoticones {
+    transition: font-size 0.3s, opacity 0.3s;
+    font-size: 0px;
+}
+
+h2 {
+    color: #fff2d9;
+    font-size: 30px;
+    font-weight: 100;
+    margin-top: 50px;
+    margin-left: 25px;
+}
+
+#seleccionar-ataque h2 {
+    color: rgb(255, 246, 246);
+}
+
+input {
+    display: none;
+}
+
+input[type="radio"]:checked+label {
+    border: 2px solid #ffffff;
+    background-color: #113946;
+}
+
+label {
+    background-color: rgb(17, 57, 70, 0.7);
+    width: 85%;
+    height: 100px;
+    font-family: 'Press Start 2P';
+    font-size: 20px;
+    color: rgb(255, 242, 217);
+    box-sizing: border-box;
+    padding: 20px;
+    display: flex;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+    margin: 15px;
+}
+
+#mascota-enemigo,
+#mascota-jugador,
+img {
+    width: 80px;
+}
+
+#mensaje-ataques p {
+    color: rgb(255, 228, 214);
+}
+
+#reiniciarButton {
+    background-color: rgb(217, 136, 185);
+    justify-content: center;
+    align-items: center;
+    color: rgb(176, 87, 141);
+    margin: 15px;
+}
+
+#resultado {
+    color: rgb(255, 228, 214);
+}
+
+.seccion-mascotas {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.seccion-mascotas label img {
+    width: 100px;
+}
+
+.seccion-mascotas label img:hover {
+    width: 150px;
+}
+
+#seleccionar-ataque {
+    flex-direction: column;
+    align-items: center;
+}
+
+#seleccionar-mascota {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.texto-pets {
+    color: #e3dfb8;
+}
+
+.titulo-ataque {
+    color: rgb(255, 228, 214);
+}
+
+.titulo-principal {
+    align-items: center;
+    width: 85%;
+}
+
+.titulo-principal h1 {
+    color: #ffffff;
+    font-size: 50px;
+    margin-left: 25px;
+}
+
+@media screen and (max-width: 768px) {
+    h2{
+        font-size: 45px;
         text-align: center;
     }
-
-    .emoticones {
-        transition: font-size 0.3s, opacity 0.3s;
-        font-size: 0px;
-    }
-
-    h2 {
-        color: #fff2d9;
-        font-size: 30px;
-        font-weight: 100;
-        margin-top: 50px;
-        margin-left: 25px;
-    }
-
-    input {
-        display: none;
-    }
-
-    input[type="radio"]:checked + label {
-        border: 2px solid #ffffff;
-        background-color: #113946;
-    }
-
-    label {
-        background-color: rgb(17,57,70,0.7);
-        width: 85%;
-        height: 150px;
-        font-family: 'Press Start 2P';
-        font-size: 20px;
-        color: rgb(255,242,217);
-        box-sizing: border-box;
-        padding: 20px;
-        display: flex;
-        border-radius: 20px;
-        justify-content: center;
-        align-items: center;
-        margin: 15px;
-    }
-
-    #mascota-enemigo, #mascota-jugador, img{
-        width: 80px;
-    }
-
-    #reiniciarButton {
-        background-color: rgb(217, 136, 185);
-        justify-content: center;
-        align-items: center;
-        color: rgb(176, 87, 141);
-    }
-
-    .seccion-mascotas{
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .seccion-mascotas label img {
-        width: 130px;
-    }
-
-    .seccion-mascotas label img:hover {
-        width: 150px;
-    }
-
-    #seleccionar-ataque {
-        flex-direction: column;
-        align-items: center;
-    }    
-
-    #seleccionar-mascota {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .texto-pets {
-        color: #e3dfb8;
-    }
-
-    .titulo-ataque {
-        color: rgb(250, 203, 234);
-    }
-
-    .titulo-principal {
-        align-items: center;
-        width: 85%;
-    }
-
-    .titulo-principal h1 {
-        color: #ffffff;
-        font-size: 50px;
-        margin-left: 25px;
+    .botones-ataques{
+        width: 200px;
+        font-size: 16px;
     }
 }
