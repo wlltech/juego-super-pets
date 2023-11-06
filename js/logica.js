@@ -4,42 +4,47 @@ let ataqueEnemigo;
 let vidasJugador = 3;
 let vidasEnemigo = 3;
 
+// Variables para seleccionar elementos del DOM
+let spanAtaqueEnemigo = document.getElementById('ataque-enemigo');
+let spanAtaqueJugador = document.getElementById('ataque-jugador');
+let buttonBaba = document.getElementById('boton-baba');
+let buttonMirada = document.getElementById('boton-mirada');
+let buttonOlfato = document.getElementById('boton-olfato');
+let botonSeleccionarMascota = document.getElementById('boton-seleccionar-mascota');
+let inputCaracol = document.getElementById('caracol');
+let inputGato = document.getElementById('gato');
+let spanMascotaEnemigo = document.getElementById('mascota-enemigo');
+let spanMascotaJugador = document.getElementById('mascota-jugador');
+let divMensajes = document.getElementById('mensaje-ataques');
+let inputPerro = document.getElementById('perro');
+let botonReiniciarJuego = document.getElementById('reiniciarButton');
+let spanResultado = document.getElementById('resultado');
+let buttonReiniciar = document.getElementById("reiniciarButton");
+let seccionSeleccionarAtaque = document.getElementById('seleccionar-ataque');
+let seccionSeleccionarMascota = document.getElementById('seleccionar-mascota');
+let spanVidasJugador = document.getElementById('vidas-mascota-jugador');
+let spanVidasEnemigo = document.getElementById('vidas-mascota-enemigo');
+
 // Función para iniciar el Juego
 function iniciarJuego() {
-    let botonReiniciarJuego = document.getElementById('reiniciarButton');
-    botonReiniciarJuego.style.display = 'none';
 
-    let seccionSeleccionarAtaque = document.getElementById('seleccionar-ataque');
+    botonReiniciarJuego.style.display = 'none';
     seccionSeleccionarAtaque.style.display = 'none';
 
-    let botonSeleccionarMascota = document.getElementById('boton-seleccionar-mascota');
     botonSeleccionarMascota.addEventListener('click', seleccionarMascotaJugador);
-
-    let buttonBaba = document.getElementById('boton-baba');
     buttonBaba.addEventListener('click', ataqueBaba);
-    let buttonOlfato = document.getElementById('boton-olfato');
     buttonOlfato.addEventListener('click', ataqueOlfato);
-    let buttonMirada = document.getElementById('boton-mirada');
     buttonMirada.addEventListener('click', ataqueMirada);
-
-    let buttonReiniciar = document.getElementById("reiniciarButton");
     buttonReiniciar.addEventListener('click', reiniciarJuego);
 }
 
 // Funciones para seleccionar mascotas
 function seleccionarMascotaJugador() {
-    let seccionSeleccionarMascota = document.getElementById('seleccionar-mascota');
-    seccionSeleccionarMascota.style.display = 'none';
 
-    let seccionSeleccionarAtaque = document.getElementById('seleccionar-ataque');
+    seccionSeleccionarMascota.style.display = 'none';
     seccionSeleccionarAtaque.style.display = 'flex';
 
-    let inputPerro = document.getElementById('perro');
-    let inputGato = document.getElementById('gato');
-    let inputCaracol = document.getElementById('caracol');
-    let spanMascotaJugador = document.getElementById('mascota-jugador');
-
-    // Insertar imágen de mascota
+    // Insertar imagen de mascota
     let imagenPerro = document.createElement('img');
     let imagenGato = document.createElement('img');
     let imagenCaracol = document.createElement('img');
@@ -71,9 +76,8 @@ function aleatorio(min, max) {
 
 function seleccionarMascotaEnemigo() {
     let seleccionAleatoria = aleatorio(1, 3);
-    let spanMascotaEnemigo = document.getElementById('mascota-enemigo');
 
-    // Insertar imágen de mascota
+    // Insertar imagen de mascota
     let imagenPerro = document.createElement('img');
     let imagenGato = document.createElement('img');
     let imagenCaracol = document.createElement('img');
@@ -81,7 +85,6 @@ function seleccionarMascotaEnemigo() {
     imagenPerro.src = '../images/perro.png';
     imagenGato.src = '../images/gato.png';
     imagenCaracol.src = '../images/caracol.png';
-
 
     if (seleccionAleatoria == 1) {
         spanMascotaEnemigo.appendChild(imagenPerro);
@@ -96,7 +99,6 @@ function seleccionarMascotaEnemigo() {
 }
 
 // Funciones para el ataque de las mascotas
-
 function ataqueBaba() {
     ataqueJugador = 'Baba resbaladiza';
     ataqueMascotaEnemigo()
@@ -126,9 +128,6 @@ function ataqueMascotaEnemigo() {
 }
 
 function combate() {
-    let spanVidasJugador = document.getElementById('vidas-mascota-jugador');
-    let spanVidasEnemigo = document.getElementById('vidas-mascota-enemigo');
-
 
     if (ataqueJugador == ataqueEnemigo) {
         mostrarMensaje('Empate 😬')
@@ -161,9 +160,6 @@ function revisarVidas() {
 }
 
 function mostrarMensaje(resultadoAtaque) {
-    let spanAtaqueJugador = document.getElementById('ataque-jugador');
-    let spanAtaqueEnemigo = document.getElementById('ataque-enemigo');
-    let spanResultado = document.getElementById('resultado');
 
     let parrafoJugador = document.createElement('p');
     let parrafoEnemigo = document.createElement('p');
@@ -177,12 +173,8 @@ function mostrarMensaje(resultadoAtaque) {
 }
 
 function mostrarResultadoFinal(resultadoFinal) {
-    let divMensajes = document.getElementById('mensaje-ataques');
-    let parrafo = document.createElement('p');
-    let buttonBaba = document.getElementById('boton-baba');
-    let buttonOlfato = document.getElementById('boton-olfato');
-    let buttonMirada = document.getElementById('boton-mirada');
 
+    let parrafo = document.createElement('p');
     parrafo.innerHTML = resultadoFinal;
     divMensajes.appendChild(parrafo);
 
@@ -190,7 +182,6 @@ function mostrarResultadoFinal(resultadoFinal) {
     buttonOlfato.disabled = true;
     buttonMirada.disabled = true;
 
-    let botonReiniciarJuego = document.getElementById('reiniciarButton');
     botonReiniciarJuego.style.display = 'flex';
 }
 
