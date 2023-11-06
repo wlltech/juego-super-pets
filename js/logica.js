@@ -131,21 +131,21 @@ function combate() {
 
 
     if (ataqueJugador == ataqueEnemigo) {
-        mostrarMensaje('Empate')
+        mostrarMensaje('Empate 😬')
     } else if (ataqueJugador == 'Mirada hipnotizante' && ataqueEnemigo == 'Olfato rastreador') {
-        mostrarMensaje('Ganaste')
+        mostrarMensaje('Ganaste 🥳')
         vidasEnemigo--
         spanVidasEnemigo.innerHTML = vidasEnemigo;
     } else if (ataqueJugador == 'Baba resbaladiza' && ataqueEnemigo == 'Mirada hipnotizante') {
-        mostrarMensaje('Ganaste')
+        mostrarMensaje('Ganaste 🥳')
         vidasEnemigo--
         spanVidasEnemigo.innerHTML = vidasEnemigo;
     } else if (ataqueJugador == 'Olfato rastreador' && ataqueEnemigo == 'Baba resbaladiza') {
-        mostrarMensaje("Ganaste")
+        mostrarMensaje("Ganaste 🥳")
         vidasEnemigo--
         spanVidasEnemigo.innerHTML = vidasEnemigo;
     } else {
-        mostrarMensaje('Perdiste')
+        mostrarMensaje('Perdiste 😭')
         vidasJugador--
         spanVidasJugador.innerHTML = vidasJugador;
     }
@@ -154,9 +154,9 @@ function combate() {
 
 function revisarVidas() {
     if (vidasEnemigo == 0) {
-        mostrarResultadoFinal("FELICIDADES!!!! 🥳");
+        mostrarResultadoFinal("FELICIDADES!!!!");
     } else if (vidasJugador == 0) {
-        mostrarResultadoFinal("😭 Inténta nuevamente");
+        mostrarResultadoFinal("Inténta nuevamente");
     }
 }
 
