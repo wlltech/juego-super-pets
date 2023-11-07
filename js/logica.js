@@ -25,6 +25,21 @@ let seccionSeleccionarMascota = document.getElementById('seleccionar-mascota');
 let spanVidasJugador = document.getElementById('vidas-mascota-jugador');
 let spanVidasEnemigo = document.getElementById('vidas-mascota-enemigo');
 
+//Clases
+class Mascotas {
+    constructor(nombre,imagen,vidas) {
+        this.nombre = nombre;
+        this.imagen = imagen;
+        this.vidas = vidas;
+    }
+}
+
+//Objetos
+let perro = new Mascotas('Perro','./images/perro.png',3);
+let gato = new Mascotas('Gato','./images/gato.png',3);
+let caracol = new Mascotas('Caracol','./images/caracol.png',3);
+
+
 // Función para iniciar el Juego
 function iniciarJuego() {
 
