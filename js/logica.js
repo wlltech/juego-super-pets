@@ -1,9 +1,10 @@
 // Variables globales
-let mascotas = [];  
+let mascotas = [];
 let ataqueJugador;
 let ataqueEnemigo;
 let vidasJugador = 3;
 let vidasEnemigo = 3;
+let estructuraTarjetasMascotas
 
 // Variables para seleccionar elementos del DOM
 let spanAtaqueEnemigo = document.getElementById('ataque-enemigo');
@@ -25,29 +26,69 @@ let seccionSeleccionarAtaque = document.getElementById('seleccionar-ataque');
 let seccionSeleccionarMascota = document.getElementById('seleccionar-mascota');
 let spanVidasJugador = document.getElementById('vidas-mascota-jugador');
 let spanVidasEnemigo = document.getElementById('vidas-mascota-enemigo');
+const idContenedorMascotas = document.getElementById('contenedor-mascotas');
 
 //Clases
 class Mascotas {
-    constructor(nombre,imagen,vidas) {
+    constructor(nombre, imagen, vidas) {
         this.nombre = nombre;
         this.imagen = imagen;
         this.vidas = vidas;
+        this.ataques = [];
     }
 }
 
 //Objetos
-let perro = new Mascotas('Perro','./images/perro.png',3);
-let gato = new Mascotas('Gato','./images/gato.png',3);
-let caracol = new Mascotas('Caracol','./images/caracol.png',3);
+let perro = new Mascotas('Perro', './images/perro.png', 3);
+let gato = new Mascotas('Gato', './images/gato.png', 3);
+let caracol = new Mascotas('Caracol', './images/caracol.png', 3);
 
-mascotas.push(perro,gato,caracol);
-console.log(mascotas);
+
+// Objeto literales u objetos anónimos
+perro.ataques.push(
+    { nombre: '😝', id: 'boton-baba' },
+    { nombre: '😝', id: 'boton-baba' },
+    { nombre: '🐽', id: 'boton-olfato' },
+    { nombre: '🐽', id: 'boton-olfato' },
+    { nombre: '👀', id: 'boton-mirada' }
+)
+
+perro.ataques.push(
+    { nombre: '👀', id: 'boton-mirada' },
+    { nombre: '👀', id: 'boton-mirada' },
+    { nombre: '🐽', id: 'boton-olfato' },
+    { nombre: '🐽', id: 'boton-olfato' },
+    { nombre: '👀', id: 'boton-mirada' }
+)
+
+perro.ataques.push(
+    { nombre: '😝', id: 'boton-baba' },
+    { nombre: '😝', id: 'boton-baba' },
+    { nombre: '🐽', id: 'boton-olfato' },
+    { nombre: '😝', id: 'boton-baba' },
+    { nombre: '👀', id: 'boton-mirada' }
+)
+
+//Agregar mascotas al arreglo  let mascotas = [];
+mascotas.push(perro, gato, caracol);
 
 // Función para iniciar el Juego
 function iniciarJuego() {
 
     botonReiniciarJuego.style.display = 'none';
     seccionSeleccionarAtaque.style.display = 'none';
+
+    //
+    mascotas.forEach((mascota) => {
+        estructuraTarjetasMascotas = `
+        <input type="radio" name="mascota" id="${mascota.nombre}" />
+            <label for="${mascota.nombre}">
+                <p>${mascota.nombre}</p>
+                <img src="${mascota.imagen}" alt="${mascota.nombre}">
+            </label>
+        `
+        idContenedorMascotas.innerHTML += estructuraTarjetasMascotas
+    })
 
     botonSeleccionarMascota.addEventListener('click', seleccionarMascotaJugador);
     buttonBaba.addEventListener('click', ataqueBaba);
