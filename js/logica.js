@@ -1,4 +1,5 @@
 // Variables globales
+let mascotas = [];  
 let ataqueJugador;
 let ataqueEnemigo;
 let vidasJugador = 3;
@@ -39,6 +40,8 @@ let perro = new Mascotas('Perro','./images/perro.png',3);
 let gato = new Mascotas('Gato','./images/gato.png',3);
 let caracol = new Mascotas('Caracol','./images/caracol.png',3);
 
+mascotas.push(perro,gato,caracol);
+console.log(mascotas);
 
 // Función para iniciar el Juego
 function iniciarJuego() {
