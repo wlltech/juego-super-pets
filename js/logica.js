@@ -5,6 +5,11 @@ let ataqueEnemigo;
 let vidasJugador = 3;
 let vidasEnemigo = 3;
 let estructuraTarjetasMascotas
+let inputCaracol
+let inputGato
+let inputPerro
+let spanMascotaEnemigo
+let spanMascotaJugador
 
 // Variables para seleccionar elementos del DOM
 let spanAtaqueEnemigo = document.getElementById('ataque-enemigo');
@@ -13,12 +18,7 @@ let buttonBaba = document.getElementById('boton-baba');
 let buttonMirada = document.getElementById('boton-mirada');
 let buttonOlfato = document.getElementById('boton-olfato');
 let botonSeleccionarMascota = document.getElementById('boton-seleccionar-mascota');
-let inputCaracol = document.getElementById('caracol');
-let inputGato = document.getElementById('gato');
-let spanMascotaEnemigo = document.getElementById('mascota-enemigo');
-let spanMascotaJugador = document.getElementById('mascota-jugador');
 let divMensajes = document.getElementById('mensaje-ataques');
-let inputPerro = document.getElementById('perro');
 let botonReiniciarJuego = document.getElementById('reiniciarButton');
 let spanResultado = document.getElementById('resultado');
 let buttonReiniciar = document.getElementById("reiniciarButton");
@@ -43,8 +43,7 @@ let perro = new Mascotas('Perro', './images/perro.png', 3);
 let gato = new Mascotas('Gato', './images/gato.png', 3);
 let caracol = new Mascotas('Caracol', './images/caracol.png', 3);
 
-
-// Objeto literales u objetos anónimos
+// Objetos literales u objetos anónimos
 perro.ataques.push(
     { nombre: '😝', id: 'boton-baba' },
     { nombre: '😝', id: 'boton-baba' },
@@ -78,16 +77,23 @@ function iniciarJuego() {
     botonReiniciarJuego.style.display = 'none';
     seccionSeleccionarAtaque.style.display = 'none';
 
-    //
+    // Ciclo que recorre el arreglo mascotas y para cada elemento
+    // genera la estructura HTML de la card de la mascota y la
+    // inyecta en el div con el id="estructuraTarjetasMascotas"
     mascotas.forEach((mascota) => {
         estructuraTarjetasMascotas = `
         <input type="radio" name="mascota" id="${mascota.nombre}" />
             <label for="${mascota.nombre}">
                 <p>${mascota.nombre}</p>
-                <img src="${mascota.imagen}" alt="${mascota.nombre}">
+                <img src="${mascota.imagen}" alt="${mascota.nombre}" id="${mascota.nombre}">
             </label>
         `
-        idContenedorMascotas.innerHTML += estructuraTarjetasMascotas
+        idContenedorMascotas.innerHTML += estructuraTarjetasMascotas;
+        inputCaracol = document.getElementById('Caracol');
+        inputGato = document.getElementById('Gato');
+        inputPerro = document.getElementById('Perro');
+        spanMascotaJugador = document.getElementById('mascota-jugador');
+        spanMascotaEnemigo = document.getElementById('mascota-enemigo');
     })
 
     botonSeleccionarMascota.addEventListener('click', seleccionarMascotaJugador);
@@ -147,13 +153,13 @@ function seleccionarMascotaEnemigo() {
 
     if (seleccionAleatoria == 1) {
         spanMascotaEnemigo.appendChild(imagenPerro);
-        //spanMascotaEnemigo.innerHTML = 'Perro';
+        // spanMascotaEnemigo.innerHTML = 'Perro';
     } else if (seleccionAleatoria == 2) {
         spanMascotaEnemigo.appendChild(imagenGato);
-        //spanMascotaEnemigo.innerHTML = 'Gato';
+        // spanMascotaEnemigo.innerHTML = 'Gato';
     } else {
         spanMascotaEnemigo.appendChild(imagenCaracol);
-        //spanMascotaEnemigo.innerHTML = 'Caracol';
+        // spanMascotaEnemigo.innerHTML = 'Caracol';
     }
 }
 
