@@ -120,13 +120,13 @@ function seleccionarMascotaJugador() {
 
     if (inputPerro.checked) {
         spanMascotaJugador.appendChild(imagenPerro);
-        //spanMascotaJugador.innerHTML = 'Perro';
+        //spanMascotaJugador.innerHTML = inputPerro.id;
     } else if (inputGato.checked) {
         spanMascotaJugador.appendChild(imagenGato);
-        //spanMascotaJugador.innerHTML = 'Gato';
+        //spanMascotaJugador.innerHTML = inputGato.id;
     } else if (inputCaracol.checked) {
         spanMascotaJugador.appendChild(imagenCaracol);
-        //spanMascotaJugador.innerHTML = 'Caracol';
+        //spanMascotaJugador.innerHTML = inputCaracol.id;
     } else {
         alert('Selecciona alguna mascota');
         reiniciarJuego();
@@ -140,27 +140,30 @@ function aleatorio(min, max) {
 }
 
 function seleccionarMascotaEnemigo() {
-    let seleccionAleatoria = aleatorio(1, 3);
+    let seleccionAleatoria = aleatorio(0, mascotas.length);
+
+    spanMascotaEnemigo.innerHTML = mascotas[seleccionAleatoria].nombre;
+
 
     // Insertar imagen de mascota
-    let imagenPerro = document.createElement('img');
-    let imagenGato = document.createElement('img');
-    let imagenCaracol = document.createElement('img');
+    //let imagenPerro = document.createElement('img');
+    //let imagenGato = document.createElement('img');
+    //let imagenCaracol = document.createElement('img');
 
-    imagenPerro.src = '../images/perro.png';
-    imagenGato.src = '../images/gato.png';
-    imagenCaracol.src = '../images/caracol.png';
+    //imagenPerro.src = '../images/perro.png';
+   // imagenGato.src = '../images/gato.png';
+    //imagenCaracol.src = '../images/caracol.png';
 
-    if (seleccionAleatoria == 1) {
-        spanMascotaEnemigo.appendChild(imagenPerro);
+   // if (seleccionAleatoria == 1) {
+     //   spanMascotaEnemigo.appendChild(imagenPerro);
         // spanMascotaEnemigo.innerHTML = 'Perro';
-    } else if (seleccionAleatoria == 2) {
-        spanMascotaEnemigo.appendChild(imagenGato);
+   // } else if (seleccionAleatoria == 2) {
+       // spanMascotaEnemigo.appendChild(imagenGato);
         // spanMascotaEnemigo.innerHTML = 'Gato';
-    } else {
-        spanMascotaEnemigo.appendChild(imagenCaracol);
+   // } else {
+     //   spanMascotaEnemigo.appendChild(imagenCaracol);
         // spanMascotaEnemigo.innerHTML = 'Caracol';
-    }
+   // }
 }
 
 // Funciones para el ataque de las mascotas
