@@ -143,7 +143,7 @@ function aleatorio(min, max) {
 }
 
 function seleccionarMascotaEnemigo() {
-    let seleccionAleatoria = aleatorio(0, mascotas.length);
+    let seleccionAleatoria = aleatorio(0, mascotas.length-1);
 
     spanMascotaEnemigo.innerHTML = mascotas[seleccionAleatoria].nombre;
 }
