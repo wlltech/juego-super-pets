@@ -53,7 +53,7 @@ perro.ataques.push(
     { nombre: '🔪', id: 'tijera' }
 )
 
-perro.ataques.push(
+gato.ataques.push(
     { nombre: '🔪', id: 'tijera' },
     { nombre: '🔪', id: 'tijera' },
     { nombre: '📄', id: 'papel' },
@@ -61,7 +61,7 @@ perro.ataques.push(
     { nombre: '🔪', id: 'tijera' }
 )
 
-perro.ataques.push(
+caracol.ataques.push(
     { nombre: '🥌', id: 'piedra' },
     { nombre: '🥌', id: 'piedra' },
     { nombre: '📄', id: 'papel' },
@@ -131,11 +131,13 @@ function seleccionarMascotaJugador() {
 function extraerAtaques (mascotaJugador) {
     let ataquesExtraidos
     for (let i = 0; i < mascotas.length; i++ ) {
+        console.log('valor de i'+i)
         if (mascotaJugador === mascotas[i].nombre) {
             ataquesExtraidos = mascotas[i].ataques
         }
         
     }
+    console.log(ataquesExtraidos)
 }
 
 function aleatorio(min, max) {
