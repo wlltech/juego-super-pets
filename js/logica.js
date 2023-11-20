@@ -5,17 +5,19 @@ let ataqueEnemigo;
 let vidasJugador = 3;
 let vidasEnemigo = 3;
 let estructuraTarjetasMascotas;
+let estructuraBotonesAtaques;
 let inputCaracol;
 let inputGato;
 let inputPerro;
 let mascotaJugador;
+let buttonPiedra;
+let buttonTijera;
+let buttonPapel;
+
 
 // Variables para seleccionar elementos del DOM
 let spanAtaqueEnemigo = document.getElementById('ataque-enemigo');
 let spanAtaqueJugador = document.getElementById('ataque-jugador');
-let buttonBaba = document.getElementById('piedra');
-let buttonMirada = document.getElementById('tijera');
-let buttonOlfato = document.getElementById('papel');
 let botonSeleccionarMascota = document.getElementById('boton-seleccionar-mascota');
 let divMensajes = document.getElementById('mensaje-ataques');
 let botonReiniciarJuego = document.getElementById('reiniciarButton');
@@ -28,6 +30,7 @@ let spanVidasEnemigo = document.getElementById('vidas-mascota-enemigo');
 let spanMascotaJugador = document.getElementById('mascota-jugador');
 let spanMascotaEnemigo = document.getElementById('mascota-enemigo');
 const idContenedorMascotas = document.getElementById('contenedor-mascotas');
+const divAtaques = document.getElementById('contenedor-ataques');
 
 //Clases
 class Mascotas {
@@ -57,7 +60,7 @@ gato.ataques.push(
     { nombre: '🔪', id: 'tijera' },
     { nombre: '🔪', id: 'tijera' },
     { nombre: '📄', id: 'papel' },
-    { nombre: '📄', id: 'papel' },
+    { nombre: '📄', id: 'piedra' },
     { nombre: '🔪', id: 'tijera' }
 )
 
@@ -97,9 +100,6 @@ function iniciarJuego() {
     })
 
     botonSeleccionarMascota.addEventListener('click', seleccionarMascotaJugador);
-    buttonBaba.addEventListener('click', ataqueBaba);
-    buttonOlfato.addEventListener('click', ataqueOlfato);
-    buttonMirada.addEventListener('click', ataqueMirada);
     buttonReiniciar.addEventListener('click', reiniciarJuego);
 }
 
@@ -128,16 +128,33 @@ function seleccionarMascotaJugador() {
     seleccionarMascotaEnemigo();
 }
 
-function extraerAtaques (mascotaJugador) {
+function extraerAtaques(mascotaJugador) {
     let ataquesExtraidos
-    for (let i = 0; i < mascotas.length; i++ ) {
-        console.log('valor de i'+i)
+    for (let i = 0; i < mascotas.length; i++) {
+
         if (mascotaJugador === mascotas[i].nombre) {
             ataquesExtraidos = mascotas[i].ataques
         }
-        
     }
-    console.log(ataquesExtraidos)
+    mostrarAtaques(ataquesExtraidos);
+}
+
+function mostrarAtaques(ataquesExtraidos) {
+
+    ataquesExtraidos.forEach((ataque) => {
+        estructuraBotonesAtaques = `
+        <button id="${ataque.id}" class="botones-ataques">${ataque.nombre}</button>
+        `;
+        divAtaques.innerHTML += estructuraBotonesAtaques;
+    });
+
+    buttonPiedra = document.getElementById('piedra');
+    buttonTijera = document.getElementById('tijera');
+    buttonPapel = document.getElementById('papel');
+
+    buttonPiedra.addEventListener('click', ataquePiedra);
+    buttonPapel.addEventListener('click', ataquePapel);
+    buttonTijera.addEventListener('click', ataqueTijera);
 }
 
 function aleatorio(min, max) {
@@ -145,23 +162,24 @@ function aleatorio(min, max) {
 }
 
 function seleccionarMascotaEnemigo() {
-    let seleccionAleatoria = aleatorio(0, mascotas.length-1);
 
+    let seleccionAleatoria = aleatorio(0, mascotas.length - 1);
+    console.log('mascota enemigo: ' + seleccionAleatoria)
     spanMascotaEnemigo.innerHTML = mascotas[seleccionAleatoria].nombre;
 }
 
 // Funciones para el ataque de las mascotas
-function ataqueBaba() {
+function ataquePiedra() {
     ataqueJugador = 'Piedra';
     ataqueMascotaEnemigo()
 }
 
-function ataqueOlfato() {
+function ataquePapel() {
     ataqueJugador = 'Papel';
     ataqueMascotaEnemigo()
 }
 
-function ataqueMirada() {
+function ataqueTijera() {
     ataqueJugador = 'Tijera';
     ataqueMascotaEnemigo()
 }
@@ -230,9 +248,9 @@ function mostrarResultadoFinal(resultadoFinal) {
     parrafo.innerHTML = resultadoFinal;
     divMensajes.appendChild(parrafo);
 
-    buttonBaba.disabled = true;
-    buttonOlfato.disabled = true;
-    buttonMirada.disabled = true;
+    buttonPiedra.disabled = true;
+    buttonPapel.disabled = true;
+    buttonTijera.disabled = true;
 
     botonReiniciarJuego.style.display = 'flex';
 }
