@@ -1,6 +1,6 @@
 // Variables globales
 let mascotas = [];
-let ataqueJugador;
+let ataqueJugador = [];
 let ataqueEnemigo;
 let vidasJugador = 3;
 let vidasEnemigo = 3;
@@ -10,10 +10,11 @@ let inputCaracol;
 let inputGato;
 let inputPerro;
 let mascotaJugador;
+let botonesDinamicos = [];
 let buttonPiedra;
 let buttonTijera;
 let buttonPapel;
-let botonesDinamicos = [];
+
 
 
 // Variables para seleccionar elementos del DOM
@@ -152,12 +153,29 @@ function mostrarAtaques(ataquesExtraidos) {
     buttonPiedra = document.getElementById('piedra');
     buttonTijera = document.getElementById('tijera');
     buttonPapel = document.getElementById('papel');
+
     botonesDinamicos = document.querySelectorAll('.botones-dinamicos');
 
-    buttonPiedra.addEventListener('click', ataquePiedra);
-    buttonPapel.addEventListener('click', ataquePapel);
-    buttonTijera.addEventListener('click', ataqueTijera);
+}
 
+function secuenciaAtaques () {
+    botonesDinamicos.forEach((boton) => {
+        boton.addEventListener('click', (e) => {
+            if (e.target.textContent === '🥌'){
+                ataqueJugador.push('PIEDRA');
+                console.log(ataqueJugador);
+                boton.style.background = '#112f59'
+            } else if (e.target.textContent === '📄'){
+                ataqueJugador.push('PAPEL');
+                console.log(ataqueJugador);
+                boton.style.background = '#112f59'
+            } else {
+                ataqueJugador.push('TIJERA');
+                console.log(ataqueJugador);
+                boton.style.background = '#112f59'
+            }
+        })
+    })
 }
 
 function aleatorio(min, max) {
@@ -169,23 +187,11 @@ function seleccionarMascotaEnemigo() {
     let seleccionAleatoria = aleatorio(0, mascotas.length - 1);
     console.log('mascota enemigo: ' + seleccionAleatoria)
     spanMascotaEnemigo.innerHTML = mascotas[seleccionAleatoria].nombre;
+
+    secuenciaAtaques ()
 }
 
 // Funciones para el ataque de las mascotas
-function ataquePiedra() {
-    ataqueJugador = 'Piedra';
-    ataqueMascotaEnemigo()
-}
-
-function ataquePapel() {
-    ataqueJugador = 'Papel';
-    ataqueMascotaEnemigo()
-}
-
-function ataqueTijera() {
-    ataqueJugador = 'Tijera';
-    ataqueMascotaEnemigo()
-}
 
 function ataqueMascotaEnemigo() {
     let ataqueAleatorio = aleatorio(1, 3);
