@@ -13,6 +13,7 @@ let mascotaJugador;
 let buttonPiedra;
 let buttonTijera;
 let buttonPapel;
+let botonesDinamicos = [];
 
 
 // Variables para seleccionar elementos del DOM
@@ -143,7 +144,7 @@ function mostrarAtaques(ataquesExtraidos) {
 
     ataquesExtraidos.forEach((ataque) => {
         estructuraBotonesAtaques = `
-        <button id="${ataque.id}" class="botones-ataques">${ataque.nombre}</button>
+        <button id="${ataque.id}" class="botones-ataques botones-dinamicos">${ataque.nombre}</button>
         `;
         divAtaques.innerHTML += estructuraBotonesAtaques;
     });
@@ -151,10 +152,12 @@ function mostrarAtaques(ataquesExtraidos) {
     buttonPiedra = document.getElementById('piedra');
     buttonTijera = document.getElementById('tijera');
     buttonPapel = document.getElementById('papel');
+    botonesDinamicos = document.querySelectorAll('.botones-dinamicos');
 
     buttonPiedra.addEventListener('click', ataquePiedra);
     buttonPapel.addEventListener('click', ataquePapel);
     buttonTijera.addEventListener('click', ataqueTijera);
+
 }
 
 function aleatorio(min, max) {
