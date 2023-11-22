@@ -7,11 +7,15 @@ let buttonTijera;
 let buttonPapel;
 let estructuraTarjetasMascotas;
 let estructuraBotonesAtaques;
+let indexAtaqueJugador;
+let indexAtaqueEnemigo;
 let inputCaracol;
 let inputGato;
 let inputPerro;
 let mascotaJugador;
 let mascotas = [];
+let victoriasJugador = 0;
+let victoriasEnemigo = 0;
 let vidasJugador = 3;
 let vidasEnemigo = 3;
 
@@ -125,11 +129,11 @@ function gestionarSeleccionMascota() {
         reiniciarJuego();
     }
 
-    extraerAtaques(mascotaJugador);
+    ataquesMascotaJugador(mascotaJugador);
     seleccionarMascotaEnemigo();
 }
 
-function extraerAtaques(mascotaJugador) {
+function ataquesMascotaJugador(mascotaJugador) {
     let ataquesExtraidos
     for (let i = 0; i < mascotas.length; i++) {
 
@@ -137,10 +141,10 @@ function extraerAtaques(mascotaJugador) {
             ataquesExtraidos = mascotas[i].ataques
         }
     }
-    mostrarAtaques(ataquesExtraidos);
+    mostrarAtaquesJugador(ataquesExtraidos);
 }
 
-function mostrarAtaques(ataquesExtraidos) {
+function mostrarAtaquesJugador(ataquesExtraidos) {
 
     ataquesExtraidos.forEach((ataque) => {
         estructuraBotonesAtaques = `
@@ -164,9 +168,8 @@ function aleatorio(min, max) {
 function seleccionarMascotaEnemigo() {
 
     let seleccionAleatoria = aleatorio(0, mascotas.length - 1);
-
     spanMascotaEnemigo.innerHTML = mascotas[seleccionAleatoria].nombre;
-    ataquesMascotaEnemigo.innerHTML = mascotas[seleccionAleatoria].ataque;
+    
 
     secuenciaAtaques()
 }
@@ -176,29 +179,28 @@ function secuenciaAtaques() {
         boton.addEventListener('click', (e) => {
             if (e.target.textContent === '🥌') {
                 ataqueJugador.push('PIEDRA');
-                console.log('jugador: '+ataqueJugador);
+                console.log('jugador: ' + ataqueJugador);
                 boton.style.background = '#112f59'
+                buttonPiedra.disabled = true;
             } else if (e.target.textContent === '📄') {
                 ataqueJugador.push('PAPEL');
-                console.log('jugador: '+ataqueJugador);
+                console.log('jugador: ' + ataqueJugador);
                 boton.style.background = '#112f59'
+                buttonPiedra.disabled = true;
             } else {
                 ataqueJugador.push('TIJERA');
-                console.log('jugador: '+ataqueJugador);
+                console.log('jugador: ' + ataqueJugador);
                 boton.style.background = '#112f59'
+                buttonPiedra.disabled = true;
             }
             ataqueMascotaEnemigo();
         })
     })
 
-    
 }
 
-// Funciones para el ataque de las mascotas
-
-function ataqueMascotaEnemigo() {
-    let ataqueAleatorio = aleatorio(0, ataquesMascotaEnemigo.length -1);
-
+function ataqueMascotaEnemigo() {  /* ----- */
+    let ataqueAleatorio = aleatorio(0, 4);
     if (ataqueAleatorio == 0 || ataqueAleatorio == 1) {
         ataqueEnemigo.push('PIEDRA');
     } else if (ataqueAleatorio == 3 || ataqueAleatorio == 4) {
@@ -206,70 +208,86 @@ function ataqueMascotaEnemigo() {
     } else {
         ataqueEnemigo.push('TIJERA');
     }
-    console.log('enemigo: '+ataqueEnemigo);
-    combate();
+    console.log('enemigo: ' + ataqueEnemigo);
+    iniciarCombate()
+}
+
+function iniciarCombate() {
+    if (ataqueJugador.length > 4) {
+        combate();
+    }
+}
+
+function guardarAtaquesJugadores(i) {
+    indexAtaqueJugador = ataqueJugador[i];
+    indexAtaqueEnemigo = ataqueEnemigo[i];
 }
 
 function combate() {
 
-    if (ataqueJugador == ataqueEnemigo) {
-        mostrarMensaje('Empate 😬')
-    } else if (ataqueJugador == 'Tijera' && ataqueEnemigo == 'Papel') {
-        mostrarMensaje('Ganaste 🥳')
-        vidasEnemigo--
-        spanVidasEnemigo.innerHTML = vidasEnemigo;
-    } else if (ataqueJugador == 'Piedra' && ataqueEnemigo == 'Tijera') {
-        mostrarMensaje('Ganaste 🥳')
-        vidasEnemigo--
-        spanVidasEnemigo.innerHTML = vidasEnemigo;
-    } else if (ataqueJugador == 'Papel' && ataqueEnemigo == 'Piedra') {
-        mostrarMensaje("Ganaste 🥳")
-        vidasEnemigo--
-        spanVidasEnemigo.innerHTML = vidasEnemigo;
-    } else {
-        mostrarMensaje('Perdiste 😭')
-        vidasJugador--
-        spanVidasJugador.innerHTML = vidasJugador;
+    for (let i = 0; i < ataqueJugador.length; i++) {
+        if (ataqueJugador[i] === ataqueEnemigo[i]) {
+            guardarAtaquesJugadores(i);
+            mostrarMensaje('Empate 😬')
+        } else if (ataqueJugador[i] === 'PIEDRA' && ataqueEnemigo[i] === 'TIJERA') {
+            guardarAtaquesJugadores(i);
+            mostrarMensaje('Ganaste 🙂')
+            victoriasJugador ++
+            spanVidasJugador.innerHTML = victoriasJugador
+        } else if (ataqueJugador[i] === 'PAPEL' && ataqueEnemigo[i] === 'PIEDRA') {
+            guardarAtaquesJugadores(i);
+            mostrarMensaje('Ganaste 🙂')
+            victoriasJugador ++
+            spanVidasJugador.innerHTML = victoriasJugador
+        } else if (ataqueJugador[i] === 'TIJERA' && ataqueEnemigo[i] === 'PAPEL') {
+            guardarAtaquesJugadores(i);
+            mostrarMensaje('Ganaste 🙂')
+            victoriasJugador ++
+            spanVidasJugador.innerHTML = victoriasJugador
+        } else {
+            guardarAtaquesJugadores(i);
+            mostrarMensaje('Perdiste 😭')
+            vidasEnemigo ++
+            spanVidasEnemigo.innerHTML = vidasEnemigo
+        }
+
+        revisarVictorias();
     }
-    revisarVidas();
 }
-
-function revisarVidas() {
-    if (vidasEnemigo == 0) {
-        mostrarResultadoFinal("FELICIDADES!!!!");
-    } else if (vidasJugador == 0) {
-        mostrarResultadoFinal("Inténta nuevamente");
+    function revisarVictorias() {
+        if (victoriasEnemigo === victoriasJugador) {
+            mostrarResultadoFinal("EMPATE");
+        } else if (victoriasJugador > victoriasJugador) {
+            mostrarResultadoFinal("GANASTE!!!!!!!");
+        } else {
+            mostrarResultadoFinal("PERDISTE");
+        }
     }
-}
 
-function mostrarMensaje(resultadoAtaque) {
+    function mostrarMensaje(resultadoAtaque) {
 
-    let parrafoJugador = document.createElement('p');
-    let parrafoEnemigo = document.createElement('p');
+        let parrafoJugador = document.createElement('p');
+        let parrafoEnemigo = document.createElement('p');
 
-    parrafoJugador.innerHTML = ataqueJugador;
-    parrafoEnemigo.innerHTML = ataqueEnemigo;
-    spanResultado.innerHTML = resultadoAtaque;
+        parrafoJugador.innerHTML = indexAtaqueJugador;
+        parrafoEnemigo.innerHTML = indexAtaqueEnemigo;
+        spanResultado.innerHTML = resultadoAtaque;
 
-    spanAtaqueJugador.appendChild(parrafoJugador);
-    spanAtaqueEnemigo.appendChild(parrafoEnemigo);
-}
+        spanAtaqueJugador.appendChild(parrafoJugador);
+        spanAtaqueEnemigo.appendChild(parrafoEnemigo);
+    }
 
-function mostrarResultadoFinal(resultadoFinal) {
+    function mostrarResultadoFinal(resultadoFinal) {
 
-    let parrafo = document.createElement('p');
-    parrafo.innerHTML = resultadoFinal;
-    divMensajes.appendChild(parrafo);
+        let parrafo = document.createElement('p');
+        parrafo.innerHTML = resultadoFinal;
+        divMensajes.appendChild(parrafo);
 
-    buttonPiedra.disabled = true;
-    buttonPapel.disabled = true;
-    buttonTijera.disabled = true;
+        botonReiniciarJuego.style.display = 'flex';
+    }
 
-    botonReiniciarJuego.style.display = 'flex';
-}
+    function reiniciarJuego() {
+        location.reload();
+    }
 
-function reiniciarJuego() {
-    location.reload();
-}
-
-window.addEventListener('load', iniciarJuego);
+    window.addEventListener('load', iniciarJuego);
