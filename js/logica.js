@@ -1,41 +1,40 @@
 // Variables globales
-let mascotas = [];
 let ataqueJugador = [];
-let ataqueEnemigo;
-let vidasJugador = 3;
-let vidasEnemigo = 3;
+let ataqueEnemigo = [];
+let botonesDinamicos = [];
+let buttonPiedra;
+let buttonTijera;
+let buttonPapel;
 let estructuraTarjetasMascotas;
 let estructuraBotonesAtaques;
 let inputCaracol;
 let inputGato;
 let inputPerro;
 let mascotaJugador;
-let botonesDinamicos = [];
-let buttonPiedra;
-let buttonTijera;
-let buttonPapel;
-
-
+let mascotas = [];
+let vidasJugador = 3;
+let vidasEnemigo = 3;
 
 // Variables para seleccionar elementos del DOM
-let spanAtaqueEnemigo = document.getElementById('ataque-enemigo');
-let spanAtaqueJugador = document.getElementById('ataque-jugador');
-let botonSeleccionarMascota = document.getElementById('boton-seleccionar-mascota');
-let divMensajes = document.getElementById('mensaje-ataques');
-let botonReiniciarJuego = document.getElementById('reiniciarButton');
-let spanResultado = document.getElementById('resultado');
-let buttonReiniciar = document.getElementById("reiniciarButton");
-let seccionSeleccionarAtaque = document.getElementById('seleccionar-ataque');
-let seccionSeleccionarMascota = document.getElementById('seleccionar-mascota');
-let spanVidasJugador = document.getElementById('vidas-mascota-jugador');
-let spanVidasEnemigo = document.getElementById('vidas-mascota-enemigo');
-let spanMascotaJugador = document.getElementById('mascota-jugador');
-let spanMascotaEnemigo = document.getElementById('mascota-enemigo');
-const idContenedorMascotas = document.getElementById('contenedor-mascotas');
+const ataquesMascotaEnemigo = document.getElementById('ataque-enemigo');
+const botonSeleccionarMascota = document.getElementById('boton-seleccionar-mascota');
+const botonReiniciarJuego = document.getElementById('reiniciarButton');
+const buttonReiniciar = document.getElementById("reiniciarButton");
 const divAtaques = document.getElementById('contenedor-ataques');
+const divMensajes = document.getElementById('mensaje-ataques');
+const idContenedorMascotas = document.getElementById('contenedor-mascotas');
+const seccionSeleccionarAtaque = document.getElementById('seleccionar-ataque');
+const seccionSeleccionarMascota = document.getElementById('seleccionar-mascota');
+const spanAtaqueEnemigo = document.getElementById('ataque-enemigo');
+const spanAtaqueJugador = document.getElementById('ataque-jugador');
+const spanMascotaEnemigo = document.getElementById('mascota-enemigo');
+const spanMascotaJugador = document.getElementById('mascota-jugador');
+const spanResultado = document.getElementById('resultado');
+const spanVidasEnemigo = document.getElementById('vidas-mascota-enemigo');
+const spanVidasJugador = document.getElementById('vidas-mascota-jugador');
 
 //Clases
-class Mascotas {
+class Mascota {
     constructor(nombre, imagen, vidas) {
         this.nombre = nombre;
         this.imagen = imagen;
@@ -44,10 +43,10 @@ class Mascotas {
     }
 }
 
-//Objetos
-let perro = new Mascotas('Perro', './images/perro.png', 3);
-let gato = new Mascotas('Gato', './images/gato.png', 3);
-let caracol = new Mascotas('Caracol', './images/caracol.png', 3);
+//Objetos de la clase Mascota
+let perro = new Mascota('Perro', './images/perro.png', 3);
+let gato = new Mascota('Gato', './images/gato.png', 3);
+let caracol = new Mascota('Caracol', './images/caracol.png', 3);
 
 // Objetos literales u objetos anónimos
 perro.ataques.push(
@@ -74,7 +73,7 @@ caracol.ataques.push(
     { nombre: '🔪', id: 'tijera' }
 )
 
-//Agregar mascotas al arreglo  let mascotas = [];
+//Agregar mascotas al arreglo "let mascotas = [];"
 mascotas.push(perro, gato, caracol);
 
 // Función para iniciar el Juego
@@ -101,12 +100,12 @@ function iniciarJuego() {
         inputPerro = document.getElementById('Perro');
     })
 
-    botonSeleccionarMascota.addEventListener('click', seleccionarMascotaJugador);
+    botonSeleccionarMascota.addEventListener('click', gestionarSeleccionMascota);
     buttonReiniciar.addEventListener('click', reiniciarJuego);
 }
 
-// Funciones para seleccionar mascotas
-function seleccionarMascotaJugador() {
+// Funciones muestran la selección de la Mascota
+function gestionarSeleccionMascota() {
 
     seccionSeleccionarMascota.style.display = 'none';
     seccionSeleccionarAtaque.style.display = 'flex';
@@ -158,26 +157,6 @@ function mostrarAtaques(ataquesExtraidos) {
 
 }
 
-function secuenciaAtaques () {
-    botonesDinamicos.forEach((boton) => {
-        boton.addEventListener('click', (e) => {
-            if (e.target.textContent === '🥌'){
-                ataqueJugador.push('PIEDRA');
-                console.log(ataqueJugador);
-                boton.style.background = '#112f59'
-            } else if (e.target.textContent === '📄'){
-                ataqueJugador.push('PAPEL');
-                console.log(ataqueJugador);
-                boton.style.background = '#112f59'
-            } else {
-                ataqueJugador.push('TIJERA');
-                console.log(ataqueJugador);
-                boton.style.background = '#112f59'
-            }
-        })
-    })
-}
-
 function aleatorio(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
@@ -185,24 +164,49 @@ function aleatorio(min, max) {
 function seleccionarMascotaEnemigo() {
 
     let seleccionAleatoria = aleatorio(0, mascotas.length - 1);
-    console.log('mascota enemigo: ' + seleccionAleatoria)
-    spanMascotaEnemigo.innerHTML = mascotas[seleccionAleatoria].nombre;
 
-    secuenciaAtaques ()
+    spanMascotaEnemigo.innerHTML = mascotas[seleccionAleatoria].nombre;
+    ataquesMascotaEnemigo.innerHTML = mascotas[seleccionAleatoria].ataque;
+
+    secuenciaAtaques()
+}
+
+function secuenciaAtaques() {
+    botonesDinamicos.forEach((boton) => {
+        boton.addEventListener('click', (e) => {
+            if (e.target.textContent === '🥌') {
+                ataqueJugador.push('PIEDRA');
+                console.log('jugador: '+ataqueJugador);
+                boton.style.background = '#112f59'
+            } else if (e.target.textContent === '📄') {
+                ataqueJugador.push('PAPEL');
+                console.log('jugador: '+ataqueJugador);
+                boton.style.background = '#112f59'
+            } else {
+                ataqueJugador.push('TIJERA');
+                console.log('jugador: '+ataqueJugador);
+                boton.style.background = '#112f59'
+            }
+            ataqueMascotaEnemigo();
+        })
+    })
+
+    
 }
 
 // Funciones para el ataque de las mascotas
 
 function ataqueMascotaEnemigo() {
-    let ataqueAleatorio = aleatorio(1, 3);
+    let ataqueAleatorio = aleatorio(0, ataquesMascotaEnemigo.length -1);
 
-    if (ataqueAleatorio == 1) {
-        ataqueEnemigo = 'Piedra';
-    } else if (ataqueAleatorio == 2) {
-        ataqueEnemigo = 'Papel';
+    if (ataqueAleatorio == 0 || ataqueAleatorio == 1) {
+        ataqueEnemigo.push('PIEDRA');
+    } else if (ataqueAleatorio == 3 || ataqueAleatorio == 4) {
+        ataqueEnemigo.push('PAPEL');
     } else {
-        ataqueEnemigo = 'Tijera';
+        ataqueEnemigo.push('TIJERA');
     }
+    console.log('enemigo: '+ataqueEnemigo);
     combate();
 }
 
