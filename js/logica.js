@@ -1,26 +1,24 @@
 // Variables globales
-let ataqueJugador = [];
-let ataqueEnemigo = [];
+let ataqueElegidoJugador = [];
+let ataqueElegidoEnemigo = [];
 let botonesDinamicos = [];
-let buttonPiedra;
-let buttonTijera;
-let buttonPapel;
+let botonPiedra;
+let botonTijera;
+let botonPapel;
 let estructuraTarjetasMascotas;
 let estructuraBotonesAtaques;
-let indexAtaqueJugador;
-let indexAtaqueEnemigo;
+let resumenAtaquesJugador;
+let resumenAtaquesEnemigo;
 let inputCaracol;
 let inputGato;
 let inputPerro;
 let mascotaJugador;
+let mascotaEnemigo;
 let mascotas = [];
 let victoriasJugador = 0;
 let victoriasEnemigo = 0;
-let vidasJugador = 3;
-let vidasEnemigo = 3;
 
 // Variables para seleccionar elementos del DOM
-const ataquesMascotaEnemigo = document.getElementById('ataque-enemigo');
 const botonSeleccionarMascota = document.getElementById('boton-seleccionar-mascota');
 const botonReiniciarJuego = document.getElementById('reiniciarButton');
 const buttonReiniciar = document.getElementById("reiniciarButton");
@@ -29,28 +27,28 @@ const divMensajes = document.getElementById('mensaje-ataques');
 const idContenedorMascotas = document.getElementById('contenedor-mascotas');
 const seccionSeleccionarAtaque = document.getElementById('seleccionar-ataque');
 const seccionSeleccionarMascota = document.getElementById('seleccionar-mascota');
-const spanAtaqueEnemigo = document.getElementById('ataque-enemigo');
-const spanAtaqueJugador = document.getElementById('ataque-jugador');
+const spanataqueElegidoEnemigo = document.getElementById('ataque-enemigo');
+const spanataqueElegidoJugador = document.getElementById('ataque-jugador');
 const spanMascotaEnemigo = document.getElementById('mascota-enemigo');
 const spanMascotaJugador = document.getElementById('mascota-jugador');
 const spanResultado = document.getElementById('resultado');
-const spanVidasEnemigo = document.getElementById('vidas-mascota-enemigo');
-const spanVidasJugador = document.getElementById('vidas-mascota-jugador');
+const spanVictoriasEnemigo = document.getElementById('victorias-mascota-enemigo');
+const spanVictoriasJugador = document.getElementById('cictorias-mascota-jugador');
 
 //Clases
 class Mascota {
-    constructor(nombre, imagen, vidas) {
+    constructor(nombre, imagen, victorias) {
         this.nombre = nombre;
         this.imagen = imagen;
-        this.vidas = vidas;
+        this.victorias = victorias;
         this.ataques = [];
     }
 }
 
 //Objetos de la clase Mascota
-let perro = new Mascota('Perro', './images/perro.png', 3);
-let gato = new Mascota('Gato', './images/gato.png', 3);
-let caracol = new Mascota('Caracol', './images/caracol.png', 3);
+let perro = new Mascota('Perro', './images/perro.png', 0);
+let gato = new Mascota('Gato', './images/gato.png', 0);
+let caracol = new Mascota('Caracol', './images/caracol.png', 0);
 
 // Objetos literales u objetos anónimos
 perro.ataques.push(
@@ -99,17 +97,19 @@ function iniciarJuego() {
         // Agrega la estructura de la tarjeta de mascota al elemento con id 'idContenedorMascotas'
         idContenedorMascotas.innerHTML += estructuraTarjetasMascotas;
 
+        // Como las cards de las mascotas aún no existen, por eso se agregan en este
+        // momento y no arriba, las siguiente variables para capturar el ID de las cards
         inputCaracol = document.getElementById('Caracol');
         inputGato = document.getElementById('Gato');
         inputPerro = document.getElementById('Perro');
     })
 
-    botonSeleccionarMascota.addEventListener('click', gestionarSeleccionMascota);
+    botonSeleccionarMascota.addEventListener('click', accionAlElegirMascotaJugador);
     buttonReiniciar.addEventListener('click', reiniciarJuego);
 }
 
-// Funciones muestran la selección de la Mascota
-function gestionarSeleccionMascota() {
+// Funciones que se ejecutan al seleccionar la mascota
+function accionAlElegirMascotaJugador() {
 
     seccionSeleccionarMascota.style.display = 'none';
     seccionSeleccionarAtaque.style.display = 'flex';
@@ -129,69 +129,74 @@ function gestionarSeleccionMascota() {
         reiniciarJuego();
     }
 
-    ataquesMascotaJugador(mascotaJugador);
+    extraeAtaquesMascotaJugador(mascotaJugador);
     seleccionarMascotaEnemigo();
 }
 
-function ataquesMascotaJugador(mascotaJugador) {
-    let ataquesExtraidos
+// Función para saber los ataques de la mascota seleccionada por el jugador
+function extraeAtaquesMascotaJugador(mascotaJugador) {
+    let ataquesHeredados
     for (let i = 0; i < mascotas.length; i++) {
 
         if (mascotaJugador === mascotas[i].nombre) {
-            ataquesExtraidos = mascotas[i].ataques
+            ataquesHeredados = mascotas[i].ataques
         }
     }
-    mostrarAtaquesJugador(ataquesExtraidos);
+    mostrarAtaquesJugador(ataquesHeredados);
 }
 
-function mostrarAtaquesJugador(ataquesExtraidos) {
+// Función para mostrar en pantalla los ataques de la mascota seleccionada por el jugador
+function mostrarAtaquesJugador(ataquesHeredados) {
 
-    ataquesExtraidos.forEach((ataque) => {
+    ataquesHeredados.forEach((ataque) => {
         estructuraBotonesAtaques = `
         <button id="${ataque.id}" class="botones-ataques botones-dinamicos">${ataque.nombre}</button>
         `;
         divAtaques.innerHTML += estructuraBotonesAtaques;
     });
 
-    buttonPiedra = document.getElementById('piedra');
-    buttonTijera = document.getElementById('tijera');
-    buttonPapel = document.getElementById('papel');
+    botonPiedra = document.getElementById('piedra'); /* REVISAR*/
+    botonPapel = document.getElementById('papel');
+    botonTijera = document.getElementById('tijera');
 
     botonesDinamicos = document.querySelectorAll('.botones-dinamicos');
 
 }
 
+// Función que genera números aleatorios
 function aleatorio(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
+// Función donde a partir de un número aleatorio el enemigo selecciona su mascota
 function seleccionarMascotaEnemigo() {
 
     let seleccionAleatoria = aleatorio(0, mascotas.length - 1);
     spanMascotaEnemigo.innerHTML = mascotas[seleccionAleatoria].nombre;
-    
+    mascotaEnemigo = mascotas[seleccionAleatoria].nombre;
+    accionAlElegirAtaquesJugador();
 
-    secuenciaAtaques()
 }
 
-function secuenciaAtaques() {
+// Función que guarda los ataques seleccionados por el jugador y los deshabilita
+// para que no puedan ser usados de nuevo
+function accionAlElegirAtaquesJugador() {
     botonesDinamicos.forEach((boton) => {
         boton.addEventListener('click', (e) => {
             if (e.target.textContent === '🥌') {
-                ataqueJugador.push('PIEDRA');
-                console.log('jugador: ' + ataqueJugador);
+                ataqueElegidoJugador.push('PIEDRA');
                 boton.style.background = '#112f59'
-                buttonPiedra.disabled = true;
+                boton.disabled = true;
             } else if (e.target.textContent === '📄') {
-                ataqueJugador.push('PAPEL');
-                console.log('jugador: ' + ataqueJugador);
+                ataqueElegidoJugador.push('PAPEL');
+                console.log('jugador: ' + ataqueElegidoJugador);
                 boton.style.background = '#112f59'
-                buttonPiedra.disabled = true;
+                boton.disabled = true;
             } else {
-                ataqueJugador.push('TIJERA');
-                console.log('jugador: ' + ataqueJugador);
+                ataqueElegidoJugador.push('TIJERA');
+                console.log('jugador: ' + ataqueElegidoJugador);
                 boton.style.background = '#112f59'
-                buttonPiedra.disabled = true;
+                boton.disabled = true;
             }
             ataqueMascotaEnemigo();
         })
@@ -199,60 +204,58 @@ function secuenciaAtaques() {
 
 }
 
-function ataqueMascotaEnemigo() {  /* ----- */
-    let ataqueAleatorio = aleatorio(0, 4);
-    if (ataqueAleatorio == 0 || ataqueAleatorio == 1) {
-        ataqueEnemigo.push('PIEDRA');
-    } else if (ataqueAleatorio == 3 || ataqueAleatorio == 4) {
-        ataqueEnemigo.push('PAPEL');
-    } else {
-        ataqueEnemigo.push('TIJERA');
+function ataqueMascotaEnemigo(mascotaEnemigo) {  /* REVISAR */
+
+    for (let i = 0; i < mascotas.length; i++) {
+        if (mascotaEnemigo === mascotas[i].nombre) {
+            ataqueElegidoEnemigo.push(mascotas[i].ataques)
+        }      
     }
-    console.log('enemigo: ' + ataqueEnemigo);
+
+    console.log('enemigo: ' + ataqueElegidoEnemigo);
     iniciarCombate()
 }
 
 function iniciarCombate() {
-    if (ataqueJugador.length > 4) {
+    if (ataqueElegidoJugador.length > 4) {
         combate();
     }
 }
 
 function guardarAtaquesJugadores(i) {
-    indexAtaqueJugador = ataqueJugador[i];
-    indexAtaqueEnemigo = ataqueEnemigo[i];
+    resumenAtaquesJugador = ataqueElegidoJugador[i];
+    resumenAtaquesEnemigo = ataqueElegidoEnemigo[i];
 }
 
 function combate() {
 
-    for (let i = 0; i < ataqueJugador.length; i++) {
-        if (ataqueJugador[i] === ataqueEnemigo[i]) {
+    for (let i = 0; i < ataqueElegidoJugador.length; i++) {
+        if (ataqueElegidoJugador[i] === ataqueElegidoEnemigo[i]) {
             guardarAtaquesJugadores(i);
             mostrarMensaje('Empate 😬')
-        } else if (ataqueJugador[i] === 'PIEDRA' && ataqueEnemigo[i] === 'TIJERA') {
+        } else if (ataqueElegidoJugador[i] === 'PIEDRA' && ataqueElegidoEnemigo[i] === 'TIJERA') {
             guardarAtaquesJugadores(i);
             mostrarMensaje('Ganaste 🙂')
             victoriasJugador ++
-            spanVidasJugador.innerHTML = victoriasJugador
-        } else if (ataqueJugador[i] === 'PAPEL' && ataqueEnemigo[i] === 'PIEDRA') {
+            spanVictoriasJugador.innerHTML = victoriasJugador
+        } else if (ataqueElegidoJugador[i] === 'PAPEL' && ataqueElegidoEnemigo[i] === 'PIEDRA') {
             guardarAtaquesJugadores(i);
             mostrarMensaje('Ganaste 🙂')
             victoriasJugador ++
-            spanVidasJugador.innerHTML = victoriasJugador
-        } else if (ataqueJugador[i] === 'TIJERA' && ataqueEnemigo[i] === 'PAPEL') {
+            spanVictoriasJugador.innerHTML = victoriasJugador
+        } else if (ataqueElegidoJugador[i] === 'TIJERA' && ataqueElegidoEnemigo[i] === 'PAPEL') {
             guardarAtaquesJugadores(i);
             mostrarMensaje('Ganaste 🙂')
             victoriasJugador ++
-            spanVidasJugador.innerHTML = victoriasJugador
+            spanVictoriasJugador.innerHTML = victoriasJugador
         } else {
             guardarAtaquesJugadores(i);
             mostrarMensaje('Perdiste 😭')
-            vidasEnemigo ++
-            spanVidasEnemigo.innerHTML = vidasEnemigo
+            victoriasEnemigo ++
+            spanVictoriasEnemigo.innerHTML = victoriasEnemigo
         }
-
-        revisarVictorias();
     }
+    revisarVictorias();
 }
     function revisarVictorias() {
         if (victoriasEnemigo === victoriasJugador) {
@@ -269,12 +272,12 @@ function combate() {
         let parrafoJugador = document.createElement('p');
         let parrafoEnemigo = document.createElement('p');
 
-        parrafoJugador.innerHTML = indexAtaqueJugador;
-        parrafoEnemigo.innerHTML = indexAtaqueEnemigo;
+        parrafoJugador.innerHTML = resumenAtaquesJugador;
+        parrafoEnemigo.innerHTML = resumenAtaquesEnemigo;
         spanResultado.innerHTML = resultadoAtaque;
 
-        spanAtaqueJugador.appendChild(parrafoJugador);
-        spanAtaqueEnemigo.appendChild(parrafoEnemigo);
+        spanataqueElegidoJugador.appendChild(parrafoJugador);
+        spanataqueElegidoEnemigo.appendChild(parrafoEnemigo);
     }
 
     function mostrarResultadoFinal(resultadoFinal) {

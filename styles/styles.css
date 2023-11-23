@@ -95,12 +95,12 @@ button:hover {
     margin-bottom: 30px;
 }
 
-.caja-vidas {
+.caja-victorias {
     display: flex;
     text-align: center;
 }
 
-.caja-vidas p {
+.caja-victorias p {
     color: rgb(176, 87, 141);
 }
 
