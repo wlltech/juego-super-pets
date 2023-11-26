@@ -84,9 +84,8 @@ function iniciarJuego() {
     botonReiniciarJuego.style.display = 'none';
     seccionSeleccionarAtaque.style.display = 'none';
 
+    // Para cada mascota en el arreglo 'mascotas', se ejecuta este bloque de código
     mascotas.forEach((mascota) => {
-        // Para cada mascota en el arreglo 'mascotas', se ejecuta este bloque de código
-
         estructuraTarjetasMascotas = `
         <input type="radio" name="mascota" id="${mascota.nombre}" />
             <label for="${mascota.nombre}">
@@ -198,7 +197,7 @@ function accionAlElegirAtaquesJugador() {
                 boton.style.background = '#112f59'
                 boton.disabled = true;
             }
-            ataqueMascotaEnemigo();
+            ataqueMascotaEnemigo(mascotaEnemigo);
         })
     })
 
@@ -208,11 +207,14 @@ function ataqueMascotaEnemigo(mascotaEnemigo) {  /* REVISAR */
 
     for (let i = 0; i < mascotas.length; i++) {
         if (mascotaEnemigo === mascotas[i].nombre) {
-            ataqueElegidoEnemigo.push(mascotas[i].ataques)
-        }      
+            // Recorre los ataques de la mascota enemiga y los agrega individualmente
+            mascotas[i].ataques.forEach((ataque) => {
+                ataqueElegidoEnemigo.push(ataque.id);
+            });
+        }
     }
 
-    console.log('enemigo: ' + ataqueElegidoEnemigo);
+    console.log('ataque enemigo: ' + ataqueElegidoEnemigo);
     iniciarCombate()
 }
 
