@@ -29,8 +29,10 @@
     <section id="ver-mapa">
         <h2>Sección canvas</h2>
         <canvas id="mapa"></canvas>
-        <button onClick="moverDerechaPerro()">Derecha</button>
-        <button onClick="moverBajarPerro()">Bajar</button>
+        <button onmousedown="moverDerecha()" onmouseup="detenerMovimiento()">&#8594;</button>
+        <button onmousedown="moverBajar()" onmouseup="detenerMovimiento()">&#8595;</button>
+        <button onmousedown="moverSubir()" onmouseup="detenerMovimiento()">&#8593;</button>
+        <button onmousedown="moverIzquierda()" onmouseup="detenerMovimiento()">&#8592;</button>
     </section>
 
     <section id="seleccionar-ataque">

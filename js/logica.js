@@ -19,6 +19,7 @@ let victoriasJugador = 0;
 let victoriasEnemigo = 0;
 // Canvas
 let lienzo = mapa.getContext("2d");
+let intervalo;
 
 // Variables para seleccionar elementos del DOM
 const botonSeleccionarMascota = document.getElementById('boton-seleccionar-mascota');
@@ -53,6 +54,8 @@ class Mascota {
         this.alto = 80;
         this.mapaImagen = new Image();
         this.mapaImagen.src = imagen;
+        this.velocidadX = 0;
+        this.velocidadY = 0;
     }
 }
 
@@ -127,6 +130,7 @@ function accionAlElegirMascotaJugador() {
 
     // Canvas -  dibujar lienzo
     seccionVerMapa.style.display = 'flex';
+    iniciarMapa();
 
     if (inputPerro.checked) {
         // inputPerro.id, se está haciendo referencia al identificador único (ID) del elemento en el DOM
@@ -315,17 +319,25 @@ function reiniciarJuego() {
     location.reload();
 }
 
-function moverDerechaPerro() {
-    perro.x = perro.x + 5
-    pintarMascota();
+function moverDerecha() {
+    perro.velocidadX = 5;
 }
 
-function moverBajarPerro() {
-    perro.y = perro.y + 5
-    pintarMascota();
+function moverBajar() {
+    perro.velocidadY = 5;
+}
+
+function moverSubir() {
+    perro.velocidadY = -5;
+}
+
+function moverIzquierda() {
+    perro.velocidadX = -5;
 }
 
 function pintarMascota() {
+    perro.x = perro.x + perro.velocidadX;
+    perro.y = perro.y + perro.velocidadY;
     lienzo.clearRect(0, 0, mapa.width, mapa.height);
     lienzo.drawImage(
         perro.mapaImagen,
@@ -334,6 +346,42 @@ function pintarMascota() {
         perro.ancho,
         perro.alto
     );
+}
+
+function detenerMovimiento() {
+    perro.velocidadX = 0;
+    perro.velocidadY = 0;
+}
+
+
+// Esta función escucha las teclas del teclado y ejecuta las funciones según corresponde para
+// mover la mascota
+function sePresionoUnaTecla(event) {
+    switch (event.key) {
+        case 'ArrowUp':
+            moverSubir();
+            break;
+        case 'ArrowDown':
+            moverBajar();
+            break;
+        case 'ArrowLeft':
+            moverIzquierda();
+            break;
+        case 'ArrowRight':
+            moverDerecha();
+            break;
+        default:
+            break;
+    }
+}
+
+function iniciarMapa () {
+    mapa.width = 800;
+    mapa.height = 600;
+
+    intervalo = setInterval(pintarMascota, 50);
+    window.addEventListener('keydown', sePresionoUnaTecla);
+    window.addEventListener('keyup', detenerMovimiento);
 }
 
 window.addEventListener('load', iniciarJuego);
