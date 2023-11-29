@@ -22,7 +22,7 @@ let victoriasEnemigo = 0;
 let lienzo = mapa.getContext("2d");
 let intervalo;
 let mapaBackground = new Image();
-mapaBackground.src ='./images/ai-bg-city.jpg'
+mapaBackground.src = './images/ai-bg-city.jpg'
 
 // Variables para seleccionar elementos del DOM
 const botonSeleccionarMascota = document.getElementById('boton-seleccionar-mascota');
@@ -53,15 +53,15 @@ class Mascota {
         this.ataques = [];
         this.x = x;
         this.y = x;
-        this.ancho = 80;
-        this.alto = 80;
+        this.ancho = 30;
+        this.alto = 30;
         this.mapaImagen = new Image();
         this.mapaImagen.src = fotoMapa;
         this.velocidadX = 0;
         this.velocidadY = 0;
     }
 
-    pintarMascota(){
+    pintarMascota() {
         lienzo.drawImage(
             this.mapaImagen,
             this.x,
@@ -73,13 +73,13 @@ class Mascota {
 }
 
 //Objetos de la clase Mascota
-let perro = new Mascota('Perro', './images/perro.png', 0 , './images/perro-head.png');
+let perro = new Mascota('Perro', './images/perro.png', 0, './images/perro-head.png');
 let gato = new Mascota('Gato', './images/gato.png', 0, './images/gato-head.png');
 let caracol = new Mascota('Caracol', './images/caracol.png', 0, './images/caracol-head.png');
 
-let perroEnemigo = new Mascota('Perro', './images/perro.png', 0 , './images/perro-head.png',80,120);
-let gatoEnemigo = new Mascota('Gato', './images/gato.png', 0, './images/gato-head.png',150,95);
-let caracolEnemigo = new Mascota('Caracol', './images/caracol.png', 0, './images/caracol-head.png',200,190);
+let perroEnemigo = new Mascota('Perro', './images/perro.png', 0, './images/perro-head.png', 80, 120);
+let gatoEnemigo = new Mascota('Gato', './images/gato.png', 0, './images/gato-head.png', 150, 95);
+let caracolEnemigo = new Mascota('Caracol', './images/caracol.png', 0, './images/caracol-head.png', 200, 190);
 
 // Objetos literales u objetos anónimos
 perro.ataques.push(
@@ -367,6 +367,12 @@ function pintarCanvas() {
     perroEnemigo.pintarMascota();
     gatoEnemigo.pintarMascota();
     caracolEnemigo.pintarMascota();
+
+    if (mascotaJugadorObjeto.velocidadX !== 0 || mascotaJugadorObjeto.velocidadY !== 0){
+        revisarColicion(perroEnemigo);
+        revisarColicion(gatoEnemigo);
+        revisarColicion(caracolEnemigo);
+    }
 }
 
 function detenerMovimiento() {
@@ -396,7 +402,7 @@ function sePresionoUnaTecla(event) {
     }
 }
 
-function iniciarMapa () {
+function iniciarMapa() {
     mapa.width = 320;
     mapa.height = 240;
     mascotaJugadorObjeto = obtenerObjetoMascota(mascotaJugador);
@@ -406,13 +412,37 @@ function iniciarMapa () {
     window.addEventListener('keyup', detenerMovimiento);
 }
 
-function obtenerObjetoMascota (){
+function obtenerObjetoMascota() {
     for (let i = 0; i < mascotas.length; i++) {
         if (mascotaJugador === mascotas[i].nombre) {
             return mascotas[i];
-        } 
-        
+        }
+
     }
+}
+
+function revisarColicion(enemigo) {
+    const arribaEnemigo = enemigo.y
+    const abajoEnemigo = enemigo.y + enemigo.alto
+    const derechaEnemigo = enemigo.x + enemigo.ancho
+    const izquierdaEnemigo = enemigo.x
+
+    const arribaMascota = mascotaJugadorObjeto.y
+    const abajoMascota = mascotaJugadorObjeto.y + mascotaJugadorObjeto.alto
+    const derechaMascota = mascotaJugadorObjeto.x + mascotaJugadorObjeto.ancho
+    const izquierdaMascota = mascotaJugadorObjeto.x
+
+    if (
+        abajoMascota < arribaEnemigo ||
+        arribaMascota > abajoEnemigo ||
+        derechaMascota < izquierdaEnemigo ||
+        izquierdaMascota > derechaEnemigo
+    ) {
+        return
+    }
+
+    detenerMovimiento();
+    alert("Hay colisión con " + enemigo.nombre);
 }
 
 window.addEventListener('load', iniciarJuego);
