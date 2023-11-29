@@ -46,26 +46,40 @@ const etiquetaCanvas = document.getElementById('mapa');
 
 //Clases
 class Mascota {
-    constructor(nombre, imagen, victorias) {
+    constructor(nombre, imagen, victorias, fotoMapa, x = 10, y = 10) {
         this.nombre = nombre;
         this.imagen = imagen;
         this.victorias = victorias;
         this.ataques = [];
-        this.x = 20;
-        this.y = 30;
+        this.x = x;
+        this.y = x;
         this.ancho = 80;
         this.alto = 80;
         this.mapaImagen = new Image();
-        this.mapaImagen.src = imagen;
+        this.mapaImagen.src = fotoMapa;
         this.velocidadX = 0;
         this.velocidadY = 0;
+    }
+
+    pintarMascota(){
+        lienzo.drawImage(
+            this.mapaImagen,
+            this.x,
+            this.y,
+            this.ancho,
+            this.alto
+        );
     }
 }
 
 //Objetos de la clase Mascota
-let perro = new Mascota('Perro', './images/perro.png', 0);
-let gato = new Mascota('Gato', './images/gato.png', 0);
-let caracol = new Mascota('Caracol', './images/caracol.png', 0);
+let perro = new Mascota('Perro', './images/perro.png', 0 , './images/perro-head.png');
+let gato = new Mascota('Gato', './images/gato.png', 0, './images/gato-head.png');
+let caracol = new Mascota('Caracol', './images/caracol.png', 0, './images/caracol-head.png');
+
+let perroEnemigo = new Mascota('Perro', './images/perro.png', 0 , './images/perro-head.png',80,120);
+let gatoEnemigo = new Mascota('Gato', './images/gato.png', 0, './images/gato-head.png',150,95);
+let caracolEnemigo = new Mascota('Caracol', './images/caracol.png', 0, './images/caracol-head.png',200,190);
 
 // Objetos literales u objetos anónimos
 perro.ataques.push(
@@ -349,14 +363,10 @@ function pintarCanvas() {
         mapa.width,
         mapa.height
     )
-
-    lienzo.drawImage(
-        mascotaJugadorObjeto.mapaImagen,
-        mascotaJugadorObjeto.x,
-        mascotaJugadorObjeto.y,
-        mascotaJugadorObjeto.ancho,
-        mascotaJugadorObjeto.alto
-    );
+    mascotaJugadorObjeto.pintarMascota();
+    perroEnemigo.pintarMascota();
+    gatoEnemigo.pintarMascota();
+    caracolEnemigo.pintarMascota();
 }
 
 function detenerMovimiento() {
