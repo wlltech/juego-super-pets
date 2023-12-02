@@ -24,6 +24,18 @@ let intervalo;
 let mapaBackground = new Image();
 mapaBackground.src = './images/ai-bg-city.jpg'
 
+let alturaQueBuscamos;
+let anchoDelMapa = window.innerWidth - 30;
+const anchoMaximoDelMapa = 600;
+
+if (anchoDelMapa > anchoMaximoDelMapa) {
+    anchoDelMapa = anchoMaximoDelMapa - 20
+}
+
+alturaQueBuscamos = anchoDelMapa * 600 / 800;
+mapa.width = anchoDelMapa
+mapa.height = alturaQueBuscamos
+
 // Variables para seleccionar elementos del DOM
 const botonSeleccionarMascota = document.getElementById('boton-seleccionar-mascota');
 const botonReiniciarJuego = document.getElementById('reiniciarButton');
@@ -46,15 +58,15 @@ const etiquetaCanvas = document.getElementById('mapa');
 
 //Clases
 class Mascota {
-    constructor(nombre, imagen, victorias, fotoMapa, x = 10, y = 10) {
+    constructor(nombre, imagen, victorias, fotoMapa) {
         this.nombre = nombre;
         this.imagen = imagen;
         this.victorias = victorias;
         this.ataques = [];
-        this.x = x;
-        this.y = x;
-        this.ancho = 30;
-        this.alto = 30;
+        this.ancho = 60;
+        this.alto = 60;
+        this.x = aleatorio(0,mapa.width - this.ancho);
+        this.y = aleatorio(0, mapa.height - this.alto);
         this.mapaImagen = new Image();
         this.mapaImagen.src = fotoMapa;
         this.velocidadX = 0;
@@ -77,12 +89,20 @@ let perro = new Mascota('Perro', './images/perro.png', 0, './images/perro-head.p
 let gato = new Mascota('Gato', './images/gato.png', 0, './images/gato-head.png');
 let caracol = new Mascota('Caracol', './images/caracol.png', 0, './images/caracol-head.png');
 
-let perroEnemigo = new Mascota('Perro', './images/perro.png', 0, './images/perro-head.png', 80, 120);
-let gatoEnemigo = new Mascota('Gato', './images/gato.png', 0, './images/gato-head.png', 150, 95);
-let caracolEnemigo = new Mascota('Caracol', './images/caracol.png', 0, './images/caracol-head.png', 200, 190);
+let perroEnemigo = new Mascota('Perro', './images/perro.png', 0, './images/perro-head.png');
+let gatoEnemigo = new Mascota('Gato', './images/gato.png', 0, './images/gato-head.png');
+let caracolEnemigo = new Mascota('Caracol', './images/caracol.png', 0, './images/caracol-head.png');
 
 // Objetos literales u objetos anónimos
 perro.ataques.push(
+    { nombre: '🥌', id: 'piedra' },
+    { nombre: '🥌', id: 'piedra' },
+    { nombre: '📄', id: 'papel' },
+    { nombre: '📄', id: 'papel' },
+    { nombre: '🔪', id: 'tijera' }
+)
+
+perroEnemigo.ataques.push(
     { nombre: '🥌', id: 'piedra' },
     { nombre: '🥌', id: 'piedra' },
     { nombre: '📄', id: 'papel' },
@@ -98,7 +118,23 @@ gato.ataques.push(
     { nombre: '🔪', id: 'tijera' }
 )
 
+gatoEnemigo.ataques.push(
+    { nombre: '🔪', id: 'tijera' },
+    { nombre: '🔪', id: 'tijera' },
+    { nombre: '📄', id: 'papel' },
+    { nombre: '📄', id: 'piedra' },
+    { nombre: '🔪', id: 'tijera' }
+)
+
 caracol.ataques.push(
+    { nombre: '🥌', id: 'piedra' },
+    { nombre: '🥌', id: 'piedra' },
+    { nombre: '📄', id: 'papel' },
+    { nombre: '🥌', id: 'piedra' },
+    { nombre: '🔪', id: 'tijera' }
+)
+
+caracolEnemigo.ataques.push(
     { nombre: '🥌', id: 'piedra' },
     { nombre: '🥌', id: 'piedra' },
     { nombre: '📄', id: 'papel' },
@@ -143,7 +179,6 @@ function iniciarJuego() {
 function accionAlElegirMascotaJugador() {
 
     seccionSeleccionarMascota.style.display = 'none';
-    //seccionSeleccionarAtaque.style.display = 'flex';
 
     // Canvas -  dibujar lienzo
 
@@ -165,7 +200,6 @@ function accionAlElegirMascotaJugador() {
     extraeAtaquesMascotaJugador(mascotaJugador);
     seccionVerMapa.style.display = 'flex';
     iniciarMapa();
-    seleccionarMascotaEnemigo();
 }
 
 // Función para saber los ataques de la mascota seleccionada por el jugador
@@ -270,32 +304,28 @@ function combate() {
     for (let i = 0; i < ataqueElegidoJugador.length; i++) {
         if (ataqueElegidoJugador[i] === ataqueElegidoEnemigo[i]) {
             guardarAtaquesJugadores(i);
-            mostrarMensaje('Empate 😬')
             console.log('resultado parcial: ' + guardarAtaquesJugadores(i))
+            
         } else if (ataqueElegidoJugador[i] === 'PIEDRA' && ataqueElegidoEnemigo[i] === 'TIJERA') {
             guardarAtaquesJugadores(i);
             console.log('resultado parcial: ' + guardarAtaquesJugadores(i))
-            mostrarMensaje('Ganaste 🙂')
             victoriasJugador++
-            spanVictoriasJugador.innerHTML = victoriasJugador
+
         } else if (ataqueElegidoJugador[i] === 'PAPEL' && ataqueElegidoEnemigo[i] === 'PIEDRA') {
             guardarAtaquesJugadores(i);
             console.log('resultado parcial: ' + guardarAtaquesJugadores(i))
-            mostrarMensaje('Ganaste 🙂')
             victoriasJugador++
-            spanVictoriasJugador.innerHTML = victoriasJugador
+
         } else if (ataqueElegidoJugador[i] === 'TIJERA' && ataqueElegidoEnemigo[i] === 'PAPEL') {
             guardarAtaquesJugadores(i);
             console.log('resultado parcial: ' + guardarAtaquesJugadores(i))
-            mostrarMensaje('Ganaste 🙂')
             victoriasJugador++
-            spanVictoriasJugador.innerHTML = victoriasJugador
+
         } else {
             guardarAtaquesJugadores(i);
             console.log('resultado parcial: ' + guardarAtaquesJugadores(i))
-            mostrarMensaje('Perdiste 😭')
             victoriasEnemigo++
-            spanVictoriasEnemigo.innerHTML = victoriasEnemigo
+
         }
     }
     revisarVictorias();
@@ -303,7 +333,7 @@ function combate() {
 function revisarVictorias() {
     if (victoriasEnemigo === victoriasJugador) {
         mostrarResultadoFinal("EMPATE");
-    } else if (victoriasJugador > victoriasJugador) {
+    } else if (victoriasJugador > victoriasEnemigo) {
         mostrarResultadoFinal("GANASTE!!!!!!!");
     } else {
         mostrarResultadoFinal("PERDISTE");
@@ -403,8 +433,7 @@ function sePresionoUnaTecla(event) {
 }
 
 function iniciarMapa() {
-    mapa.width = 320;
-    mapa.height = 240;
+
     mascotaJugadorObjeto = obtenerObjetoMascota(mascotaJugador);
 
     intervalo = setInterval(pintarCanvas, 50);
@@ -442,7 +471,11 @@ function revisarColicion(enemigo) {
     }
 
     detenerMovimiento();
-    alert("Hay colisión con " + enemigo.nombre);
+    clearInterval(intervalo);
+    seccionSeleccionarAtaque.style.display = 'flex';
+    seccionVerMapa.style.display = 'none';
+    seleccionarMascotaEnemigo(mascotaEnemigo);
+    //alert("Hay colisión con " + enemigo.nombre);
 }
 
 window.addEventListener('load', iniciarJuego);

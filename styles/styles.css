@@ -18,7 +18,7 @@ body {
     background-size: cover;
     box-sizing: border-box;
     font-family: 'Press Start 2P';
-    margin: 0;
+    margin: 0 auto;
     padding: 0;
     width: 95%;
 }
@@ -48,7 +48,7 @@ button {
     height: 60px;
     margin-top: 30px 0px 0px 0px;
     padding: 0px;
-    width: 80%;
+    width: 300px;
 }
 
 button:hover {
@@ -217,8 +217,29 @@ img {
     justify-content: center;
 }
 
-#mapa {
-    border: 2px solid white;
+.ver__mapa-buttons {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.ver__mapa-buttons-left,
+.ver__mapa-buttons-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.ver__mapa-buttons-middle {
+    display: flex;
+    flex-direction: column;
+}
+.ver__mapa-buttons button{
+    width: 70px;
+    margin: 10px 10px;
+    color: #f5f2dc;
+    background-color: #482d39;
+    font-size: 20px;
 }
 
 @media screen and (max-width: 768px) {
@@ -239,7 +260,7 @@ img {
 
 @media screen and (max-width: 1024px) {
     h2 {
-        font-size: 55px;
+        font-size: 40px;
     }
 }
 
@@ -251,11 +272,6 @@ img {
         margin: 10px;
         padding: 15px;
         width: 250px;
-    }
-
-    button {
-        margin: 20px;
-        width: 300px;
     }
 
     .caja-puntaje {
@@ -302,4 +318,5 @@ img {
     .seccion-mascotas {
         flex-direction: row;
     }
+
 }

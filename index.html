@@ -29,10 +29,22 @@
     <section id="ver-mapa">
         <h2>Sección canvas</h2>
         <canvas id="mapa"></canvas>
-        <button onmousedown="moverDerecha()" onmouseup="detenerMovimiento()">&#8594;</button>
-        <button onmousedown="moverBajar()" onmouseup="detenerMovimiento()">&#8595;</button>
-        <button onmousedown="moverSubir()" onmouseup="detenerMovimiento()">&#8593;</button>
-        <button onmousedown="moverIzquierda()" onmouseup="detenerMovimiento()">&#8592;</button>
+        <div class="ver__mapa-buttons">
+            <div class="ver__mapa-buttons-left">
+                <button onmousedown="moverIzquierda()" onmouseup="detenerMovimiento()">&#8592;</button>
+            </div>
+            <div class="ver__mapa-buttons-middle">
+                <button onmousedown="moverSubir()" onmouseup="detenerMovimiento()">&#8593;</button>
+                <button onmousedown="moverBajar()" onmouseup="detenerMovimiento()">&#8595;</button>
+            </div>
+            <div class="ver__mapa-buttons-right">
+                <button onmousedown="moverDerecha()" onmouseup="detenerMovimiento()">&#8594;</button>
+            </div>
+            
+            
+            
+            
+        </div>
     </section>
 
     <section id="seleccionar-ataque">
