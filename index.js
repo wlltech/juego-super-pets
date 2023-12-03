@@ -7,8 +7,23 @@ const express = require("express");
 // Al llamar a la función express(), se inicializa y se guarda una instancia de la aplicación en la variable app
 const app = express();
 
+const jugadores = []
+
+class Jugador {
+    constructor(id){
+        this.id = id
+    }
+}
+
 // Manejo de una solicitud GET en la ruta raíz "/"
-app.get("/", (req, res) => {
+app.get("/unirse", (req, res) => {
+    const id = `${Math.random()}`
+
+    const jugador = new Jugador(id)
+
+    res.setHeader("Access-Control-Allow-Origin", "*")
+
+    jugadores.push(jugador)
     // Esta función se ejecuta cuando se recibe una solicitud GET en la ruta "/"
 
     // 'req' (request) representa la solicitud que llega al servidor.
@@ -19,7 +34,7 @@ app.get("/", (req, res) => {
     // esta función se ejecuta para manejar esa solicitud.
 
     // Dentro del manejador, se utiliza 'res.send()' para enviar una respuesta al cliente.
-    res.send("Hola");
+    res.send(id);
 });
 
 

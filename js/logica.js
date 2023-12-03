@@ -173,6 +173,23 @@ function iniciarJuego() {
 
     botonSeleccionarMascota.addEventListener('click', accionAlElegirMascotaJugador);
     buttonReiniciar.addEventListener('click', reiniciarJuego);
+
+    unirseAlJuego ();
+}
+
+// Esta función realiza una solicitud (fetch) a un servidor local en el puerto 8080 para unirse a un juego.
+function unirseAlJuego() {
+    fetch("http://localhost:8080/unirse") // Realiza una solicitud GET al endpoint /unirse
+    .then(function (res) { // Cuando la solicitud obtiene una respuesta
+        console.log(res); // Imprime la respuesta en la consola
+
+        if (res.ok) { // Verifica si la respuesta tiene un estado 'ok' (200-299)
+            res.text() // Convierte la respuesta a texto
+            .then(function(respuesta) { // Cuando se obtiene el texto de la respuesta
+                console.log(respuesta); // Imprime el texto de la respuesta en la consola
+            });
+        }
+    });
 }
 
 // Funciones que se ejecutan al seleccionar la mascota
