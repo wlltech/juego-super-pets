@@ -24,6 +24,8 @@ let intervalo;
 let mapaBackground = new Image();
 mapaBackground.src = './images/ai-bg-city.jpg'
 
+let jugadorId =null
+
 let alturaQueBuscamos;
 let anchoDelMapa = window.innerWidth - 30;
 const anchoMaximoDelMapa = 600;
@@ -187,6 +189,7 @@ function unirseAlJuego() {
             res.text() // Convierte la respuesta a texto
             .then(function(respuesta) { // Cuando se obtiene el texto de la respuesta
                 console.log(respuesta); // Imprime el texto de la respuesta en la consola
+                jugadorId = respuesta
             });
         }
     });
@@ -214,9 +217,26 @@ function accionAlElegirMascotaJugador() {
         reiniciarJuego();
     }
 
+    seleccionarMascota(mascotaJugador)
+
     extraeAtaquesMascotaJugador(mascotaJugador);
     seccionVerMapa.style.display = 'flex';
     iniciarMapa();
+}
+
+// 
+function seleccionarMascota(mascotaJugador){
+    fetch(`http://localhost:8080/jugador${jugadorId}`, {
+        method: "post",
+        header: {
+            "Content - Type": "application/json"
+        },
+        body: JSON.stringify({
+            mokepon: mascotaJugador
+        })
+
+    })
+    
 }
 
 // Función para saber los ataques de la mascota seleccionada por el jugador
