@@ -91,9 +91,9 @@ let perro = new Mascota('Perro', './images/perro.png', 0, './images/perro-head.p
 let gato = new Mascota('Gato', './images/gato.png', 0, './images/gato-head.png');
 let caracol = new Mascota('Caracol', './images/caracol.png', 0, './images/caracol-head.png');
 
-let perroEnemigo = new Mascota('Perro', './images/perro.png', 0, './images/perro-head.png');
-let gatoEnemigo = new Mascota('Gato', './images/gato.png', 0, './images/gato-head.png');
-let caracolEnemigo = new Mascota('Caracol', './images/caracol.png', 0, './images/caracol-head.png');
+let perroEnemigo = new Mascota('Perro', './images/perro.png', 0, './images/perro-enemigo.png');
+let gatoEnemigo = new Mascota('Gato', './images/gato.png', 0, './images/gato-enemigo.png');
+let caracolEnemigo = new Mascota('Caracol', './images/caracol.png', 0, './images/caracol-enemigo.png');
 
 // Objetos literales u objetos anónimos
 perro.ataques.push(
